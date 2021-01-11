@@ -1,0 +1,162 @@
+---
+title: "Internações por Condições Sensíveis à Atenção Primária - I"
+author: "Sidney S. P. Bisssoli"
+date: "31/12/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
+```
+
+## Introdução
+
+O objetivo desse post é mostrar como levantar, apresentar e analisar (de forma exploratória) dados de internações por condições sensíveis à atenção primária (ICSAPs) no Brasil. A série temporal apresentada compreende 5 anos (2013 a 2017). Será utilizado o software estatístico **RStudio**, de uso gratuito. 
+
+## Obtendo os Dados
+
+O banco de dados foi extraído do site "Atlas do Desenvolvimento Humano no Brasil", em 31/12/2020. [Clique aqui](https://onedrive.live.com/?authkey=%21AHx8pnaoPYqCBPM&cid=124653557C0404EC&id=124653557C0404EC%2132460&parId=124653557C0404EC%2122910&action=locate) para baixá-lo.
+
+Trata-se de um arquivo compactado que, uma vez extraído, transforma-se em 3 arquivos de formato ".xlsx" (planilhas Excel), com os seguintes nomes:  
+<br/>
+DOWNLOAD REGISTRO ADMINISTRATIVO COR 2012 A 2017  
+DOWNLOAD REGISTRO ADMINISTRATIVO SEXO 2012 A 2017  
+DOWNLOAD REGISTRO ADMINISTRATIVO TOTAL 2012 A 2017  
+<br/>
+Utilizaremos aqui somente o último (TOTAL). O arquivo possui várias abas, cada aba referente a uma "localidade": 1) totalidade do território brasileiro; 2) região da federação; 3) região metropolitana; 4) Estados; 5) municípios. Uma vez tendo baixado a base de dados no computador, o primeiro passo é trazê-la para dentro do ambiente do R. Carregaremos os 5 bancos de dados aqui mencionados:
+```{r leitura}
+library("readxl") # carregar pacote
+
+# ler os arquivos no R
+AtlasBr <- read_excel("./Banco de dados/Atlas Desenvolvimento Humano/Registro Administrativo Total 2012 2017.xlsx", sheet = "BRASIL", col_names = TRUE)
+AtlasRegiao <- read_excel("./Banco de dados/Atlas Desenvolvimento Humano/Registro Administrativo Total 2012 2017.xlsx", sheet = "REGIÃO", col_names = TRUE)
+AtlasRM <- read_excel("./Banco de dados/Atlas Desenvolvimento Humano/Registro Administrativo Total 2012 2017.xlsx", sheet = "REGIÃO_METROPOLITANA", col_names = TRUE)
+AtlasUF <- read_excel("./Banco de dados/Atlas Desenvolvimento Humano/Registro Administrativo Total 2012 2017.xlsx", sheet = "UNIDADE_DA_FEDERAÇÃO", col_names = TRUE)
+AtlasMun <- read_excel("./Banco de dados/Atlas Desenvolvimento Humano/Registro Administrativo Total 2012 2017.xlsx", sheet = "MUNICÍPIO", col_names = TRUE)
+```
+
+## Entendendo o indicador "Internações por Condições Sensíveis à Atenção Primária (ICSAP)"
+
+O indicador reflete a participação percentual de internações hospitalares por condições sensíveis à atenção primária **no total de internações hospitalares**. A [Portaria nº 221/2008 do Ministério da Saúde](https://bvsms.saude.gov.br/bvs/saudelegis/sas/2008/prt0221_17_04_2008.html) estabelece quais são essas condições. São 74 ao todo, divididas em 19 grupos (abaixo):   
+
+**01) doenças preveníveis por imunização e condições sensíveis**: coqueluche; difteria; tétano; parotidite; rubéola; sarampo; febre amarela; hepatite B; meningite por Haemophilus; meningite tuberculosa; tuberculose miliar; tuberculose pulmonar; outras tuberculoses; febre reumática; sífilis; malária; ascaridiase;  
+**02) gastroenterites infecciosas e complicações**: desidratação; gastroenterites;  
+**03) anemia**: anemia por deficiência de ferro;  
+**04) deficiências nutricionais**: Kwashiokor e outras formas de desnutrição protéico calórica; outras deficiências nutricionais;  
+**05) infecções de ouvido, nariz e garganta**: otite média supurativa; nasofaringite aguda (resfriado comum); sinusite aguda; faringite aguda; amigdalite aguda; infecção aguda VAS; rinite, nasofaringite e faringite crônicas;  
+**06) pneumonias bacterianas**: pneumonia pneumocócica; pneumonia por Haemophilus infuenzae; pneumonia por Streptococus; pneumonia bacteriana NE; pneumonia lobar NE;  
+**07) asma**: asma;  
+**08) doenças pulmonares**: bronquite aguda; bronquite não especificada como aguda ou crônica; bronquite crônica simples e a mucopurulenta; bronquite crônica não especificada; enfisema; bronquectasia; outras doenças pulmonares obstrutivas crônicas;  
+**09) hipertensão**: hipertensão essencial; doença cardíaca hipertensiva;  
+**10) angina**: angina pectoris;  
+**11) insuficiência cardíaca**: insuficiência cardíaca; edema agudo de pulmão;  
+**12) doenças cerebrovasculares**: doenças cerebrovasculares;  
+**13) diabetes melitus**: com coma ou cetoacidose; com complicações (renais, oftalmicas, neurológicas, circulatórias, periféricas, múltiplas, outras e NE); sem complicações específicas;  
+**14) epilepsias**: epilepsias;  
+**15) infecção no rim e no trato urinário**: nefrite túbulo-intersticial aguda; nefrite túbulo-intersticial crônica; nefrite túbulo-intersticial NE aguda crônica; cistite; uretrite; infecção do trato urinário de localização NE;  
+**16) infecção da pele e do tecido subcutâneo**: erisipela; impetigo; abscesso cutâneo furúnculo e carbúnculo; celulite; linfadenite aguda; outras infecções localizadas na pele e tecido subcutâneo;  
+**17) doença inflamatória dos órgãos pélvicos femininos**: salpingite e ooforite; doença inflamatória do útero exceto o colo; doença inflamatória do colo do útero; outras doenças inflamatórias pélvicas femininas; doenças da glândula de Bartholin; outras afecções inflamatórias da vagina e da vulva;  
+**18) úlcera gastrointestinal**: úlcera gastrointestinal;  
+**19) doenças relacionadas ao pré-natal e parto**: infecção no trato urinário na gravidez; sífilis congênita; síndrome da rubéola congênita;  
+
+## Apresentando os Dados
+
+Vejamos, pois, como apresentar graficamente uma análise exploratória do indicador, começando pela ICSAPs em todo o território brasileiro:
+```{r gráfico Brasil}
+library(ggplot2) # carregar pacote
+g <- ggplot(data = AtlasBr, aes(x = as.numeric(ANO), y = PINTERSAP, group = 1))
+g + 
+  geom_line(color = "blue", size = 1, linetype = "dashed") + 
+  geom_point(shape = 23, size = 3, fill = "blue", color = "black") + 
+  ylim(10, 30) + 
+  labs(title = "Internações por Condições Sensíveis à Atenção Primária (%) - Brasil",
+       x = "Ano",
+       y = "% Internações por Condições Sensíveis à Atenção Primária") + 
+  theme(plot.title = element_text(size = 13.49),
+        axis.title.y = element_text(size = 10),
+        axis.title.x = element_text(size = 13),
+        axis.text = element_text(size = 11, colour = "black"))
+```
+<br/>
+Nota-se uma discreta redução das ICSAPs no Brasil neste período de 5 anos, o que é positivo. Vejamos como as ICSAPs se distribuem em cada uma das 5 regiões do país:
+```{r gráfico região}
+library(ggplot2) # carregar pacote
+g <- ggplot(data = AtlasRegiao, aes(x = as.numeric(ANO), y = PINTERSAP, group = NOME))
+g + 
+  geom_point(aes(color = NOME, fill = NOME), shape = 23, size = 3) + 
+  geom_line(aes(color = NOME), linetype = "dashed", size = 1) + 
+  ylim(17.5, 30) + 
+  labs(title = "Internações por Condições Sensíveis à Atenção Primária (%) - Brasil",
+       x = "Ano",
+       y = "% Internações por Condições Sensíveis à Atenção Primária") + 
+  theme(plot.title = element_text(size = 13.49),
+        axis.title.y = element_text(size = 10),
+        axis.title.x = element_text(size = 13),
+        axis.text = element_text(size = 13, colour = "black"))
+```
+<br/>
+No gráfico acima, ficam nítidas as desigualdades regionais do país. Como era de se esperar, as menores ICSAPs encontram-se nas regiões Sudeste e Sul, e as maiores nas regiões Norte e Nordeste, respectivamente. Não obstante, as ICSAPs caíram em todas as regiões do país neste período. Analisemos como as ICSAPs se distribuíram nas 27 unidades da federação, no ano de 2017.
+```{r gráfico UF}
+library(dplyr) # carregar pacote
+g <- ggplot(data = filter(AtlasUF, ANO==2017), aes(x = reorder(NOME, PINTERSAP), y = PINTERSAP))
+g + 
+  geom_bar(stat = "identity", width = .7, fill = "steelblue") + 
+  coord_flip() + 
+  labs(title = "Internações por Condições Sensíveis à Atenção Primária (%) - 2017",
+       x = "Unidades da Federação (UF)",
+       y = "% Internações por Condições Sensíveis à Atenção Primária") + 
+  theme(axis.text = element_text(colour = "black"),
+        axis.text.x = element_blank(),
+        plot.title = element_text(size = 12)) + 
+  geom_text(aes(label = round(PINTERSAP, 1)), hjust=1.5, vjust = 0.4, colour = "white", size = 4) 
+```
+<br/>
+As ICSAPs no Rio Grande do Norte (RN) foram baixas em comparação com os demais Estados da Região Nordeste. As ICSAPs em Minas Gerais (MG) foram altas em comparação com os demais Estados da Região Sudeste. O Distrito Federal (DF) teve a melhor proporção de ICSAPs (15.8%); Maranhã (MA), a pior (32,4%). Vejamos como essa realidade se apresenta nas regiões metropolitanas do país:
+```{r gráfico região metropolitana}
+library(dplyr) # carregar pacote
+g <- ggplot(data = filter(AtlasRM, ANO==2017), aes(x = reorder(NOME, PINTERSAP), y = PINTERSAP))
+g + 
+  geom_bar(stat = "identity", width = .7, fill = "steelblue") + 
+  coord_flip() + 
+  labs(title = "ICSAP (%) por Região Metropolitana - 2017", 
+       x = "",
+       y = "% ICSAP") + 
+  theme(axis.text = element_text(colour = "black", size = 10),
+        axis.text.x = element_blank(),
+        plot.title = element_text(size = 12)) + 
+  geom_text(aes(label = round(PINTERSAP, 1)), hjust=1.5, vjust = 0.4, colour = "white", size = 4)
+```
+<br/>
+Interessante notar como as ICSAPs da região metropolitana do Distrito Federal (DF) e entorno (o que inclui municípios do Estado de Goiás - GO e Minas Gerais - MG) aumentam drasticamente (23,9%), em comparação às do DF (no gráfico anterior, 15,8%). Como as ICSAPs se apresentam nos municípios brasileiros? Podemos resumir a distribuição das ICSAPs municipais numericamente, em cada um dos anos:
+```{r sumário municípios}
+tapply(AtlasMun$PINTERSAP, AtlasMun$ANO, summary)
+```
+Em 2013, não há dados para 2 municípios. A mediana das ICSAPs gira entre 21,63% (em 2017) a 24,39% (em 2013). A média gira entre 23,82% (em 2017) e 26,90% (em 2013). Há municípios em que simplesmente não houve ICSAP. Em contrapartida, as maiores ICSAPs foram extremamente elevadas (entre 76,28% em 2016 a 82,06% em 2014). Podemos apresentar visualmente a distribuição das ICSAPs por meio de um gráfico de densidade: 
+```{r gráfico municípios}
+library(dplyr) # carregar pacote
+g <- ggplot(data = AtlasMun, aes(x = PINTERSAP, color=factor(ANO)))
+g + 
+  geom_density(size = 1) + 
+  labs(title = "Distribuição de Frequência das ICSAP (%) nos municípios", 
+       x = "ICSAP (%)",
+       y = "Densidade",
+       colour = "Ano")
+```
+<br/>
+Em todos os anos, a distribuição é parecida, e inclinada para a direita (já imaginávamos isso, quando verificamos que as médias tendiam a ser maiores do que as medianas, ou seja, valores muito altos "puxavam as médias para cima"). À medida que os anos passam, a distribuição fica mais inclinada para a direta (exceto em 2016) e concentrada. Podemos checar se a distribuição é normal de duas formas: visual e numericamente. No primeiro caso, por meio de um gráfico Q-Q (utilizando as ICSAPs ocorridas no ano de 2017):
+```{r gráfico teste de normalidade}
+library(ggpubr) # carregar pacote
+ggqqplot(AtlasMun$PINTERSAP[AtlasMun$ANO==2017])
+```
+<br/>
+Se a distribuição fosse normal, os pontos pretos permaneceriam ao redor da linha reta inclinada. É fácil visualizar como a amostra está bastante inclinada em ambos os extremos. Numericamente, podemos utilizar o teste de normalidade Shapiro-Wilk (de novo, com as ICSAPs ocorridas em 2017):
+```{r teste de shapiro}
+shapiro.test(sample(AtlasMun$PINTERSAP[AtlasMun$ANO==2017], size=5000, replace=FALSE, prob=NULL))
+```
+A hipótese nula do teste Shapiro-Wilk é a de que a amostra apresenta distribuição normal. Como o valor p do teste foi menor que 0,05, a hipótese nula foi rejeitada, ou seja, as ICSAPs não apresentam distribuição normal. 
+
+***
+                       
+Por ora, é isso. Num segundo momento, seria interessante analisar como as ICSAPs associam-se, por exemplo, às seguintes características de cada município: 1) populacionais (idade, sexo, escolaridade); 2) econômicas (renda per capita); 3) sanitárias (cobertura da estratégia de saúde da família, número de médicos por habitante, número de aparelhos diagnósticos por habitante). Faremos isso posteriormente.
+
+
