@@ -1,6 +1,9 @@
 
 ########################## INSTALL AND LOAD PACKAGES ###########################
 
+# use more memory
+memory.limit(9999999999)
+
 # packages' names
 packages <- c("tidyverse", "read.dbc")
 
@@ -15,13 +18,15 @@ invisible(lapply(packages, library, character.only = TRUE))
 
 ################################## YEAR: 1992 ##################################
 
+# load data
 ano_ref <- "92"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -36,15 +41,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH1992 <- write.csv2(SIH1992, file ="./Banco de dados/SIH/SIH1992.csv")
+
 ################################## YEAR: 1993 ##################################
 
+# load data
 ano_ref <- "93"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -59,15 +69,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH1993 <- write.csv2(SIH1993, file ="./Banco de dados/SIH/SIH1993.csv")
+
 ################################## YEAR: 1994 ##################################
 
+# load data
 ano_ref <- "94"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -82,15 +97,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH1994 <- write.csv2(SIH1994, file ="./Banco de dados/SIH/SIH1994.csv")
+
 ################################## YEAR: 1995 ##################################
 
+# load data
 ano_ref <- "95"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -105,15 +125,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH1995 <- write.csv2(SIH1995, file ="./Banco de dados/SIH/SIH1995.csv")
+
 ################################## YEAR: 1996 ##################################
 
+# load data
 ano_ref <- "96"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -128,15 +153,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH1996 <- write.csv2(SIH1996, file ="./Banco de dados/SIH/SIH1996.csv")
+
 ################################## YEAR: 1997 ##################################
 
+# load data
 ano_ref <- "97"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -151,15 +181,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH1997 <- write.csv2(SIH1997, file ="./Banco de dados/SIH/SIH1997.csv")
+
 ################################## YEAR: 1998 ##################################
 
+# load data
 ano_ref <- "98"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -174,15 +209,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH1998 <- write.csv2(SIH1998, file ="./Banco de dados/SIH/SIH1998.csv")
+
 ################################## YEAR: 1999 ##################################
 
+# load data
 ano_ref <- "99"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -197,15 +237,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH1999 <- write.csv2(SIH1999, file ="./Banco de dados/SIH/SIH1999.csv")
+
 ################################## YEAR: 2000 ##################################
 
+# load data
 ano_ref <- "00"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -220,15 +265,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2000 <- write.csv2(SIH2000, file ="./Banco de dados/SIH/SIH2000.csv")
+
 ################################## YEAR: 2001 ##################################
 
+# load data
 ano_ref <- "01"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -243,15 +293,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2001 <- write.csv2(SIH2001, file ="./Banco de dados/SIH/SIH2001.csv")
+
 ################################## YEAR: 2002 ##################################
 
+# load data
 ano_ref <- "02"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -266,15 +321,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2002 <- write.csv2(SIH2002, file ="./Banco de dados/SIH/SIH2002.csv")
+
 ################################## YEAR: 2003 ##################################
 
+# load data
 ano_ref <- "03"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -289,15 +349,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2003 <- write.csv2(SIH2003, file ="./Banco de dados/SIH/SIH2003.csv")
+
 ################################## YEAR: 2004 ##################################
 
+# load data
 ano_ref <- "04"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -312,15 +377,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2004 <- write.csv2(SIH2004, file ="./Banco de dados/SIH/SIH2004.csv")
+
 ################################## YEAR: 2005 ##################################
 
+# load data
 ano_ref <- "05"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -335,15 +405,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2005 <- write.csv2(SIH2005, file ="./Banco de dados/SIH/SIH2005.csv")
+
 ################################## YEAR: 2006 ##################################
 
+# load data
 ano_ref <- "06"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -358,15 +433,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2006 <- write.csv2(SIH2006, file ="./Banco de dados/SIH/SIH2006.csv")
+
 ################################## YEAR: 2007 ##################################
 
+# load data
 ano_ref <- "07"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -381,15 +461,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2007 <- write.csv2(SIH2007, file ="./Banco de dados/SIH/SIH2007.csv")
+
 ################################## YEAR: 2008 ##################################
 
+# load data
 ano_ref <- "08"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -404,15 +489,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2008 <- write.csv2(SIH2008, file ="./Banco de dados/SIH/SIH2008.csv")
+
 ################################## YEAR: 2009 ##################################
 
+# load data
 ano_ref <- "09"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -427,15 +517,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2009 <- write.csv2(SIH2009, file ="./Banco de dados/SIH/SIH2009.csv")
+
 ################################## YEAR: 2010 ##################################
 
+# load data
 ano_ref <- "10"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -450,15 +545,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2010 <- write.csv2(SIH2010, file ="./Banco de dados/SIH/SIH2010.csv")
+
 ################################## YEAR: 2011 ##################################
 
+# load data
 ano_ref <- "11"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -473,15 +573,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2011 <- write.csv2(SIH2011, file ="./Banco de dados/SIH/SIH2011.csv")
+
 ################################## YEAR: 2012 ##################################
 
+# load data
 ano_ref <- "12"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -496,15 +601,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2012 <- write.csv2(SIH2012, file ="./Banco de dados/SIH/SIH2012.csv")
+
 ################################## YEAR: 2013 ##################################
 
+# load data
 ano_ref <- "13"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -519,15 +629,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2013 <- write.csv2(SIH2013, file ="./Banco de dados/SIH/SIH2013.csv")
+
 ################################## YEAR: 2014 ##################################
 
+# load data
 ano_ref <- "14"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -542,15 +657,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2014 <- write.csv2(SIH2014, file ="./Banco de dados/SIH/SIH2014.csv")
+
 ################################## YEAR: 2015 ##################################
 
+# load data
 ano_ref <- "15"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -565,15 +685,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2015 <- write.csv2(SIH2015, file ="./Banco de dados/SIH/SIH2015.csv")
+
 ################################## YEAR: 2016 ##################################
 
+# load data
 ano_ref <- "16"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -588,15 +713,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2016 <- write.csv2(SIH2016, file ="./Banco de dados/SIH/SIH2016.csv")
+
 ################################## YEAR: 2017 ##################################
 
+# load data
 ano_ref <- "17"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -611,15 +741,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2017 <- write.csv2(SIH2017, file ="./Banco de dados/SIH/SIH2017.csv")
+
 ################################## YEAR: 2018 ##################################
 
+# load data
 ano_ref <- "18"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -634,15 +769,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2018 <- write.csv2(SIH2018, file ="./Banco de dados/SIH/SIH2018.csv")
+
 ################################## YEAR: 2019 ##################################
 
+# load data
 ano_ref <- "19"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -657,15 +797,20 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# extract data
+SIH2019 <- write.csv2(SIH2019, file ="./Banco de dados/SIH/SIH2019.csv")
+
 ################################## YEAR: 2020 ##################################
 
+# load data
 ano_ref <- "20"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("MUNIC_RES", "NASC", "SEXO",  "DT_INTER",  "DT_SAIDA", 
-             "DIAG_PRINC", "DIAG_SECUN", "RACA_COR" , "MORTE", "COD_IDADE",
-             "IDADE", "DIAS_PERM", "COMPLEX")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -679,6 +824,9 @@ for (i in arquivos$arquivos) {
   print(i)
   cont=cont+1
 }
+
+# extract data
+SIH2020 <- write.csv2(SIH2020, file ="./Banco de dados/SIH/SIH2020.csv")
 
 
 
