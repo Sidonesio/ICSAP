@@ -191,10 +191,8 @@ ano_ref <- "98"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
-             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
-             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
-             "CID_MORTE", "VAL_TOT", "US_TOT")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -210,7 +208,7 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-SIH1998 <- write.csv2(SIH1998, file ="./Banco de dados/SIH/SIH1998.csv")
+SIH1998 <- write.csv2(SIH1998, file ="./Banco de dados/csvs/SIH1998.csv")
 
 ################################## YEAR: 1999 ##################################
 
