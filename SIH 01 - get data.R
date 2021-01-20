@@ -236,7 +236,7 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-SIH1999 <- write.csv2(SIH1999, file ="./Banco de dados/SIH/SIH1999.csv")
+SIH1999 <- write.csv2(SIH1999, file ="./Banco de dados/csvs/SIH1999.csv")
 
 ################################## YEAR: 2000 ##################################
 
