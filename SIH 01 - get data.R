@@ -112,7 +112,11 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
+<<<<<<< HEAD
+SIH2000 <- write.csv2(SIH2000, file ="./Banco de dados/csvs/SIH2000.csv")
+=======
 write.csv2(SIH2000, file ="./Banco de dados/SIH/SIH2000.csv")
+>>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
 # second data loading
 SIH2000 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2000.csv"),
@@ -144,7 +148,11 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
+<<<<<<< HEAD
+SIH2001 <- write.csv2(SIH2001, file ="./Banco de dados/csvs/SIH2001.csv")
+=======
 write.csv2(SIH2001, file ="./Banco de dados/SIH/SIH2001.csv")
+>>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
 # second data loading
 SIH2001 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2001.csv"),
@@ -176,7 +184,11 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
+<<<<<<< HEAD
+SIH2002 <- write.csv2(SIH2002, file ="./Banco de dados/csvs/SIH2002.csv")
+=======
 write.csv2(SIH2002, file ="./Banco de dados/SIH/SIH2002.csv")
+>>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
 # second data loading
 SIH2002 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2002.csv"),
@@ -208,7 +220,11 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
+<<<<<<< HEAD
+SIH2003 <- write.csv2(SIH2003, file ="./Banco de dados/csvs/SIH2003.csv")
+=======
 write.csv2(SIH2003, file ="./Banco de dados/SIH/SIH2003.csv")
+>>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
 # second data loading
 SIH2003 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2003.csv"),
@@ -221,10 +237,10 @@ ano_ref <- "04"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
-             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
-             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
-             "CID_MORTE", "VAL_TOT", "US_TOT")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "INSTRU", 
+             "NUM_FILHOS", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "MORTE", 
+              "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -240,7 +256,11 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
+<<<<<<< HEAD
+SIH2004 <- write.csv2(SIH2004, file ="./Banco de dados/csvs/SIH2004.csv")
+=======
 write.csv2(SIH2004, file ="./Banco de dados/SIH/SIH2004.csv")
+>>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
 # second data loading
 SIH2004 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2004.csv"),
@@ -253,10 +273,10 @@ ano_ref <- "05"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
-             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
-             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
-             "CID_MORTE", "VAL_TOT", "US_TOT")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE",  "INSTRU", 
+             "NUM_FILHOS", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC",  "MORTE", 
+            "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -272,7 +292,11 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
+<<<<<<< HEAD
+SIH2005 <- write.csv2(SIH2005, file ="./Banco de dados/csvs/SIH2005.csv")
+=======
 write.csv2(SIH2005, file ="./Banco de dados/SIH/SIH2005.csv")
+>>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
 # second data loading
 SIH2005 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2005.csv"),
