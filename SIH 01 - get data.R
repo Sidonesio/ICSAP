@@ -438,11 +438,8 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-<<<<<<< HEAD
+
 SIH2005 <- write.csv2(SIH2005, file ="./Banco de dados/csvs/SIH2005.csv")
-=======
-write.csv2(SIH2005, file ="./Banco de dados/SIH/SIH2005.csv")
->>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
 ################################## YEAR: 2006 ##################################
 
@@ -451,10 +448,10 @@ ano_ref <- "06"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
-             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
-             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
-             "CID_MORTE", "VAL_TOT", "US_TOT")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "INSTRU", 
+             "NUM_FILHOS",  "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC",  "MORTE", 
+             "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -470,7 +467,7 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-write.csv2(SIH2006, file ="./Banco de dados/SIH/SIH2006.csv")
+write.csv2(SIH2006, file ="./Banco de dados/csvs/SIH2006.csv")
 
 ################################## YEAR: 2007 ##################################
 
@@ -479,9 +476,9 @@ ano_ref <- "07"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "INSTRU", 
              "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
-             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "MORTE", 
              "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
@@ -498,7 +495,7 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-write.csv2(SIH2007, file ="./Banco de dados/SIH/SIH2007.csv")
+write.csv2(SIH2007, file ="./Banco de dados/csvs/SIH2007.csv")
 
 ################################## YEAR: 2008 ##################################
 
