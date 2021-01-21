@@ -264,7 +264,7 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-SIH2000 <- write.csv2(SIH2000, file ="./Banco de dados/SIH/SIH2000.csv")
+SIH2000 <- write.csv2(SIH2000, file ="./Banco de dados/csvs/SIH2000.csv")
 
 ################################## YEAR: 2001 ##################################
 
@@ -292,7 +292,7 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-SIH2001 <- write.csv2(SIH2001, file ="./Banco de dados/SIH/SIH2001.csv")
+SIH2001 <- write.csv2(SIH2001, file ="./Banco de dados/csvs/SIH2001.csv")
 
 ################################## YEAR: 2002 ##################################
 
@@ -320,7 +320,7 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-SIH2002 <- write.csv2(SIH2002, file ="./Banco de dados/SIH/SIH2002.csv")
+SIH2002 <- write.csv2(SIH2002, file ="./Banco de dados/csvs/SIH2002.csv")
 
 ################################## YEAR: 2003 ##################################
 
@@ -348,7 +348,7 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-SIH2003 <- write.csv2(SIH2003, file ="./Banco de dados/SIH/SIH2003.csv")
+SIH2003 <- write.csv2(SIH2003, file ="./Banco de dados/csvs/SIH2003.csv")
 
 ################################## YEAR: 2004 ##################################
 
@@ -357,10 +357,10 @@ ano_ref <- "04"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
-             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
-             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
-             "CID_MORTE", "VAL_TOT", "US_TOT")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "INSTRU", 
+             "NUM_FILHOS", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "MORTE", 
+              "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -376,7 +376,7 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-SIH2004 <- write.csv2(SIH2004, file ="./Banco de dados/SIH/SIH2004.csv")
+SIH2004 <- write.csv2(SIH2004, file ="./Banco de dados/csvs/SIH2004.csv")
 
 ################################## YEAR: 2005 ##################################
 
@@ -385,10 +385,10 @@ ano_ref <- "05"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
-             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
-             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
-             "CID_MORTE", "VAL_TOT", "US_TOT")
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE",  "INSTRU", 
+             "NUM_FILHOS", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC",  "MORTE", 
+            "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
@@ -404,7 +404,7 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-SIH2005 <- write.csv2(SIH2005, file ="./Banco de dados/SIH/SIH2005.csv")
+SIH2005 <- write.csv2(SIH2005, file ="./Banco de dados/csvs/SIH2005.csv")
 
 ################################## YEAR: 2006 ##################################
 
