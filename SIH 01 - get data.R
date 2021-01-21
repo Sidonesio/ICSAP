@@ -5,7 +5,7 @@
 rm(list=ls())
 
 # clean just some objects
-rm(SIH2012, SIH2013, SIH2015, SIH2016)
+rm(SIH2019)
 
 # use more memory
 memory.limit(9999999999)
@@ -810,7 +810,7 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-write.csv2(SIH2019, file ="./Banco de dados/SIH/SIH2019.csv")
+write.csv2(SIH2019, file ="./Banco de dados/SIH/CSV/SIH2019.csv")
 
 ################################## YEAR: 2020 ##################################
 
