@@ -5,7 +5,7 @@
 rm(list=ls())
 
 # clean just some objects
-rm(SIH2019)
+rm(SIH2008,SIH2016,SIH2018)
 
 # use more memory
 memory.limit(9999999999)
@@ -22,177 +22,9 @@ if (any(installed_packages == FALSE)) {
 # load packages
 invisible(lapply(packages, library, character.only = TRUE))
 
-################################## YEAR: 1992 ##################################
-
-# load data
-ano_ref <- "92"
-arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
-arquivos$ano <- substr(arquivos$arquivos, 5, 6)
-arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
-             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
-             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
-             "CID_MORTE", "VAL_TOT", "US_TOT")
-cont=0
-for (i in arquivos$arquivos) {
-  if(cont==0) {
-    SIH1992 <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
-    SIH1992 <- SIH1992 %>% select(colunas)
-  } else {
-    temp <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
-    temp <- temp %>% select(colunas)
-    SIH1992 <- rbind(SIH1992, temp)
-  }
-  print(i)
-  cont=cont+1
-}
-
-# extract data
-write.csv2(SIH1992, file ="./Banco de dados/SIH/SIH1992.csv")
-
-################################## YEAR: 1993 ##################################
-
-# load data
-ano_ref <- "93"
-arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
-arquivos$ano <- substr(arquivos$arquivos, 5, 6)
-arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
-             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
-             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
-             "CID_MORTE", "VAL_TOT", "US_TOT")
-cont=0
-for (i in arquivos$arquivos) {
-  if(cont==0) {
-    SIH1993 <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
-    SIH1993 <- SIH1993 %>% select(colunas)
-  } else {
-    temp <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
-    temp <- temp %>% select(colunas)
-    SIH1993 <- rbind(SIH1993, temp)
-  }
-  print(i)
-  cont=cont+1
-}
-
-# extract data
-write.csv2(SIH1993, file ="./Banco de dados/SIH/SIH1993.csv")
-
-################################## YEAR: 1994 ##################################
-
-# load data
-ano_ref <- "94"
-arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
-arquivos$ano <- substr(arquivos$arquivos, 5, 6)
-arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
-             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
-             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
-             "CID_MORTE", "VAL_TOT", "US_TOT")
-cont=0
-for (i in arquivos$arquivos) {
-  if(cont==0) {
-    SIH1994 <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
-    SIH1994 <- SIH1994 %>% select(colunas)
-  } else {
-    temp <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
-    temp <- temp %>% select(colunas)
-    SIH1994 <- rbind(SIH1994, temp)
-  }
-  print(i)
-  cont=cont+1
-}
-
-# extract data
-write.csv2(SIH1994, file ="./Banco de dados/SIH/SIH1994.csv")
-
-################################## YEAR: 1995 ##################################
-
-# load data
-ano_ref <- "95"
-arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
-arquivos$ano <- substr(arquivos$arquivos, 5, 6)
-arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
-             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
-             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
-             "CID_MORTE", "VAL_TOT", "US_TOT")
-cont=0
-for (i in arquivos$arquivos) {
-  if(cont==0) {
-    SIH1995 <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
-    SIH1995 <- SIH1995 %>% select(colunas)
-  } else {
-    temp <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
-    temp <- temp %>% select(colunas)
-    SIH1995 <- rbind(SIH1995, temp)
-  }
-  print(i)
-  cont=cont+1
-}
-
-# extract data
-write.csv2(SIH1995, file ="./Banco de dados/SIH/SIH1995.csv")
-
-################################## YEAR: 1996 ##################################
-
-# load data
-ano_ref <- "96"
-arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
-arquivos$ano <- substr(arquivos$arquivos, 5, 6)
-arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
-             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
-             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
-             "CID_MORTE", "VAL_TOT", "US_TOT")
-cont=0
-for (i in arquivos$arquivos) {
-  if(cont==0) {
-    SIH1996 <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
-    SIH1996 <- SIH1996 %>% select(colunas)
-  } else {
-    temp <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
-    temp <- temp %>% select(colunas)
-    SIH1996 <- rbind(SIH1996, temp)
-  }
-  print(i)
-  cont=cont+1
-}
-
-# extract data
-write.csv2(SIH1996, file ="./Banco de dados/SIH/SIH1996.csv")
-
-################################## YEAR: 1997 ##################################
-
-# load data
-ano_ref <- "97"
-arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
-arquivos$ano <- substr(arquivos$arquivos, 5, 6)
-arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
-             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
-             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
-             "CID_MORTE", "VAL_TOT", "US_TOT")
-cont=0
-for (i in arquivos$arquivos) {
-  if(cont==0) {
-    SIH1997 <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
-    SIH1997 <- SIH1997 %>% select(colunas)
-  } else {
-    temp <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
-    temp <- temp %>% select(colunas)
-    SIH1997 <- rbind(SIH1997, temp)
-  }
-  print(i)
-  cont=cont+1
-}
-
-# extract data
-write.csv2(SIH1997, file ="./Banco de dados/SIH/SIH1997.csv")
-
 ################################## YEAR: 1998 ##################################
 
-# load data
+# first data loading
 ano_ref <- "98"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -214,15 +46,16 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-<<<<<<< HEAD
 write.csv2(SIH1998, file ="./Banco de dados/SIH/SIH1998.csv")
-=======
-SIH1998 <- write.csv2(SIH1998, file ="./Banco de dados/csvs/SIH1998.csv")
->>>>>>> 9947251c8a76f9885cc7daab0047094c5af2789a
+write.csv2(SIH1998, file ="./Banco de dados/csvs/SIH1998.csv")
+
+# second data loading
+SIH1998 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH1998.csv"),
+                     header=TRUE, sep=";")
 
 ################################## YEAR: 1999 ##################################
 
-# load data
+# first data loading
 ano_ref <- "99"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -246,15 +79,16 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-<<<<<<< HEAD
 write.csv2(SIH1999, file ="./Banco de dados/SIH/SIH1999.csv")
-=======
 SIH1999 <- write.csv2(SIH1999, file ="./Banco de dados/csvs/SIH1999.csv")
->>>>>>> 9947251c8a76f9885cc7daab0047094c5af2789a
+
+# second data loading
+SIH1999 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH1999.csv"),
+                     header=TRUE, sep=";")
 
 ################################## YEAR: 2000 ##################################
 
-# load data
+# first data loading
 ano_ref <- "00"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -284,9 +118,13 @@ SIH2000 <- write.csv2(SIH2000, file ="./Banco de dados/csvs/SIH2000.csv")
 write.csv2(SIH2000, file ="./Banco de dados/SIH/SIH2000.csv")
 >>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
+# second data loading
+SIH2000 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2000.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2001 ##################################
 
-# load data
+# first data loading
 ano_ref <- "01"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -316,9 +154,13 @@ SIH2001 <- write.csv2(SIH2001, file ="./Banco de dados/csvs/SIH2001.csv")
 write.csv2(SIH2001, file ="./Banco de dados/SIH/SIH2001.csv")
 >>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
+# second data loading
+SIH2001 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2001.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2002 ##################################
 
-# load data
+# first data loading
 ano_ref <- "02"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -348,9 +190,13 @@ SIH2002 <- write.csv2(SIH2002, file ="./Banco de dados/csvs/SIH2002.csv")
 write.csv2(SIH2002, file ="./Banco de dados/SIH/SIH2002.csv")
 >>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
+# second data loading
+SIH2002 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2002.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2003 ##################################
 
-# load data
+# first data loading
 ano_ref <- "03"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -380,9 +226,13 @@ SIH2003 <- write.csv2(SIH2003, file ="./Banco de dados/csvs/SIH2003.csv")
 write.csv2(SIH2003, file ="./Banco de dados/SIH/SIH2003.csv")
 >>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
+# second data loading
+SIH2003 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2003.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2004 ##################################
 
-# load data
+# first data loading
 ano_ref <- "04"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -412,9 +262,13 @@ SIH2004 <- write.csv2(SIH2004, file ="./Banco de dados/csvs/SIH2004.csv")
 write.csv2(SIH2004, file ="./Banco de dados/SIH/SIH2004.csv")
 >>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
+# second data loading
+SIH2004 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2004.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2005 ##################################
 
-# load data
+# first data loading
 ano_ref <- "05"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -441,9 +295,13 @@ for (i in arquivos$arquivos) {
 
 SIH2005 <- write.csv2(SIH2005, file ="./Banco de dados/csvs/SIH2005.csv")
 
+# second data loading
+SIH2005 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2005.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2006 ##################################
 
-# load data
+# first data loading
 ano_ref <- "06"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -469,9 +327,13 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2006, file ="./Banco de dados/csvs/SIH2006.csv")
 
+# second data loading
+SIH2006 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2006.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2007 ##################################
 
-# load data
+# first data loading
 ano_ref <- "07"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -497,9 +359,13 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2007, file ="./Banco de dados/csvs/SIH2007.csv")
 
+# second data loading
+SIH2007 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2007.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2008 ##################################
 
-# load data
+# first data loading
 ano_ref <- "08"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -525,9 +391,13 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2008, file ="./Banco de dados/SIH/SIH2008.csv")
 
+# second data loading
+SIH2008 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2008.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2009 ##################################
 
-# load data
+# first data loading
 ano_ref <- "09"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -553,9 +423,13 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2009, file ="./Banco de dados/SIH/SIH2009.csv")
 
+# second data loading
+SIH2009 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2009.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2010 ##################################
 
-# load data
+# first data loading
 ano_ref <- "10"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -581,9 +455,13 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2010, file ="./Banco de dados/SIH/SIH2010.csv")
 
+# second data loading
+SIH2010 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2010.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2011 ##################################
 
-# load data
+# first data loading
 ano_ref <- "11"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -609,9 +487,13 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2011, file ="./Banco de dados/SIH/SIH2011.csv")
 
+# second data loading
+SIH2011 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2011.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2012 ##################################
 
-# load data
+# first data loading
 ano_ref <- "12"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -637,9 +519,13 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2012, file ="./Banco de dados/SIH/SIH2012.csv")
 
+# second data loading
+SIH2012 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2012.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2013 ##################################
 
-# load data
+# first data loading
 ano_ref <- "13"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -665,9 +551,13 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2013, file ="./Banco de dados/SIH/SIH2013.csv")
 
+# second data loading
+SIH2013 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2013.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2014 ##################################
 
-# load data
+# first data loading
 ano_ref <- "14"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -693,9 +583,13 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2014, file ="./Banco de dados/SIH/SIH2014.csv")
 
+# second data loading
+SIH2014 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2014.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2015 ##################################
 
-# load data
+# first data loading
 ano_ref <- "15"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -721,9 +615,13 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2015, file ="./Banco de dados/SIH/SIH2015.csv")
 
+# second data loading
+SIH2015 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2015.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2016 ##################################
 
-# load data
+# first data loading
 ano_ref <- "16"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -749,9 +647,13 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2016, file ="./Banco de dados/SIH/SIH2016.csv")
 
+# second data loading
+SIH2016 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2016.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2017 ##################################
 
-# load data
+# first data loading
 ano_ref <- "17"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -777,9 +679,13 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2017, file ="./Banco de dados/SIH/SIH2017.csv")
 
+# second data loading
+SIH2017 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2017.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2018 ##################################
 
-# load data
+# first data loading
 ano_ref <- "18"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -805,9 +711,13 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2018, file ="./Banco de dados/SIH/SIH2018.csv")
 
+# second data loading
+SIH2018 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2018.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2019 ##################################
 
-# load data
+# first data loading
 ano_ref <- "19"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -833,9 +743,13 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2019, file ="./Banco de dados/SIH/CSV/SIH2019.csv")
 
+# second data loading
+SIH2019 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2019.csv"),
+                     header=TRUE, sep=";")
+
 ################################## YEAR: 2020 ##################################
 
-# load data
+# first data loading
 ano_ref <- "20"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -861,6 +775,9 @@ for (i in arquivos$arquivos) {
 # extract data
 write.csv2(SIH2020, file ="./Banco de dados/SIH/SIH2020.csv")
 
+# second data loading
+SIH2020 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2020.csv"),
+                     header=TRUE, sep=";")
 
 
 
