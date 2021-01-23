@@ -5,7 +5,7 @@
 rm(list=ls())
 
 # clean just some objects
-rm(SIH2008,SIH2016,SIH2018)
+rm(SIH1998,SIH2000,SIH2001, SIH2002)
 
 # use more memory
 memory.limit(9999999999)
@@ -50,7 +50,7 @@ write.csv2(SIH1998, file ="./Banco de dados/SIH/SIH1998.csv")
 write.csv2(SIH1998, file ="./Banco de dados/csvs/SIH1998.csv")
 
 # second data loading
-SIH1998 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH1998.csv"),
+SIH1998 <- read.csv2(unz("./Banco de dados/SIH1.zip", "SIH1998.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 1999 ##################################
@@ -83,7 +83,7 @@ write.csv2(SIH1999, file ="./Banco de dados/SIH/SIH1999.csv")
 SIH1999 <- write.csv2(SIH1999, file ="./Banco de dados/csvs/SIH1999.csv")
 
 # second data loading
-SIH1999 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH1999.csv"),
+SIH1999 <- read.csv2(unz("./Banco de dados/SIH1.zip", "SIH1999.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2000 ##################################
@@ -119,7 +119,7 @@ write.csv2(SIH2000, file ="./Banco de dados/SIH/SIH2000.csv")
 >>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
 # second data loading
-SIH2000 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2000.csv"),
+SIH2000 <- read.csv2(unz("./Banco de dados/SIH1.zip", "SIH2000.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2001 ##################################
@@ -155,7 +155,7 @@ write.csv2(SIH2001, file ="./Banco de dados/SIH/SIH2001.csv")
 >>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
 # second data loading
-SIH2001 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2001.csv"),
+SIH2001 <- read.csv2(unz("./Banco de dados/SIH1.zip", "SIH2001.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2002 ##################################
@@ -191,7 +191,7 @@ write.csv2(SIH2002, file ="./Banco de dados/SIH/SIH2002.csv")
 >>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
 # second data loading
-SIH2002 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2002.csv"),
+SIH2002 <- read.csv2(unz("./Banco de dados/SIH1.zip", "SIH2002.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2003 ##################################
@@ -227,7 +227,7 @@ write.csv2(SIH2003, file ="./Banco de dados/SIH/SIH2003.csv")
 >>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
 # second data loading
-SIH2003 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2003.csv"),
+SIH2003 <- read.csv2(unz("./Banco de dados/SIH1.zip", "SIH2003.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2004 ##################################
@@ -263,7 +263,7 @@ write.csv2(SIH2004, file ="./Banco de dados/SIH/SIH2004.csv")
 >>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
 # second data loading
-SIH2004 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2004.csv"),
+SIH2004 <- read.csv2(unz("./Banco de dados/SIH1.zip", "SIH2004.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2005 ##################################
@@ -299,7 +299,7 @@ write.csv2(SIH2005, file ="./Banco de dados/SIH/SIH2005.csv")
 >>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
 
 # second data loading
-SIH2005 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2005.csv"),
+SIH2005 <- read.csv2(unz("./Banco de dados/SIH2.zip", "SIH2005.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2006 ##################################
@@ -331,7 +331,7 @@ for (i in arquivos$arquivos) {
 write.csv2(SIH2006, file ="./Banco de dados/SIH/SIH2006.csv")
 
 # second data loading
-SIH2006 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2006.csv"),
+SIH2006 <- read.csv2(unz("./Banco de dados/SIH2.zip", "SIH2006.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2007 ##################################
@@ -363,7 +363,7 @@ for (i in arquivos$arquivos) {
 write.csv2(SIH2007, file ="./Banco de dados/SIH/SIH2007.csv")
 
 # second data loading
-SIH2007 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2007.csv"),
+SIH2007 <- read.csv2(unz("./Banco de dados/SIH2.zip", "SIH2007.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2008 ##################################
@@ -395,7 +395,7 @@ for (i in arquivos$arquivos) {
 write.csv2(SIH2008, file ="./Banco de dados/SIH/SIH2008.csv")
 
 # second data loading
-SIH2008 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2008.csv"),
+SIH2008 <- read.csv2(unz("./Banco de dados/SIH2.zip", "SIH2008.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2009 ##################################
@@ -427,7 +427,7 @@ for (i in arquivos$arquivos) {
 write.csv2(SIH2009, file ="./Banco de dados/SIH/SIH2009.csv")
 
 # second data loading
-SIH2009 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2009.csv"),
+SIH2009 <- read.csv2(unz("./Banco de dados/SIH2.zip", "SIH2009.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2010 ##################################
@@ -459,7 +459,7 @@ for (i in arquivos$arquivos) {
 write.csv2(SIH2010, file ="./Banco de dados/SIH/SIH2010.csv")
 
 # second data loading
-SIH2010 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2010.csv"),
+SIH2010 <- read.csv2(unz("./Banco de dados/SIH2.zip", "SIH2010.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2011 ##################################
@@ -491,7 +491,7 @@ for (i in arquivos$arquivos) {
 write.csv2(SIH2011, file ="./Banco de dados/SIH/SIH2011.csv")
 
 # second data loading
-SIH2011 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2011.csv"),
+SIH2011 <- read.csv2(unz("./Banco de dados/SIH2.zip", "SIH2011.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2012 ##################################
@@ -523,7 +523,7 @@ for (i in arquivos$arquivos) {
 write.csv2(SIH2012, file ="./Banco de dados/SIH/SIH2012.csv")
 
 # second data loading
-SIH2012 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2012.csv"),
+SIH2012 <- read.csv2(unz("./Banco de dados/SIH3.zip", "SIH2012.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2013 ##################################
@@ -555,7 +555,7 @@ for (i in arquivos$arquivos) {
 write.csv2(SIH2013, file ="./Banco de dados/SIH/SIH2013.csv")
 
 # second data loading
-SIH2013 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2013.csv"),
+SIH2013 <- read.csv2(unz("./Banco de dados/SIH3.zip", "SIH2013.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2014 ##################################
@@ -587,7 +587,7 @@ for (i in arquivos$arquivos) {
 write.csv2(SIH2014, file ="./Banco de dados/SIH/SIH2014.csv")
 
 # second data loading
-SIH2014 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2014.csv"),
+SIH2014 <- read.csv2(unz("./Banco de dados/SIH3.zip", "SIH2014.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2015 ##################################
@@ -619,7 +619,7 @@ for (i in arquivos$arquivos) {
 write.csv2(SIH2015, file ="./Banco de dados/SIH/SIH2015.csv")
 
 # second data loading
-SIH2015 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2015.csv"),
+SIH2015 <- read.csv2(unz("./Banco de dados/SIH3.zip", "SIH2015.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2016 ##################################
@@ -651,7 +651,7 @@ for (i in arquivos$arquivos) {
 write.csv2(SIH2016, file ="./Banco de dados/SIH/SIH2016.csv")
 
 # second data loading
-SIH2016 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2016.csv"),
+SIH2016 <- read.csv2(unz("./Banco de dados/SIH3.zip", "SIH2016.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2017 ##################################
@@ -683,7 +683,7 @@ for (i in arquivos$arquivos) {
 write.csv2(SIH2017, file ="./Banco de dados/SIH/SIH2017.csv")
 
 # second data loading
-SIH2017 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2017.csv"),
+SIH2017 <- read.csv2(unz("./Banco de dados/SIH3.zip", "SIH2017.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2018 ##################################
@@ -715,7 +715,7 @@ for (i in arquivos$arquivos) {
 write.csv2(SIH2018, file ="./Banco de dados/SIH/SIH2018.csv")
 
 # second data loading
-SIH2018 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2018.csv"),
+SIH2018 <- read.csv2(unz("./Banco de dados/SIH3.zip", "SIH2018.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2019 ##################################
@@ -747,7 +747,7 @@ for (i in arquivos$arquivos) {
 write.csv2(SIH2019, file ="./Banco de dados/SIH/CSV/SIH2019.csv")
 
 # second data loading
-SIH2019 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2019.csv"),
+SIH2019 <- read.csv2(unz("./Banco de dados/SIH3.zip", "SIH2019.csv"),
                      header=TRUE, sep=";")
 
 ################################## YEAR: 2020 ##################################
