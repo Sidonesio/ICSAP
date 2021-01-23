@@ -1,0 +1,6 @@
+SIH.zip filter=lfs diff=lfs merge=lfs -text
+SIH1.zip filter=lfs diff=lfs merge=lfs -text
+SIH2.zip filter=lfs diff=lfs merge=lfs -text
+SIH3.zip filter=lfs diff=lfs merge=lfs -text
+SIH4.zip filter=lfs diff=lfs merge=lfs -text
+SIH5.zip filter=lfs diff=lfs merge=lfs -text
