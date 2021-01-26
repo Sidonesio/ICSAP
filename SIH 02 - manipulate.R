@@ -70,7 +70,7 @@ SIH_sexo$icsap <- if_else(SIH_sexo$DIAG_PRINC %in% ICSAP_TOTAL, 1, 0)
 SIH_sexo <- SIH_sexo %>% group_by(DT_INTER, SEXO, icsap) %>%
   mutate(num_internacoes = sum(qtde)) %>%
   distinct(DT_INTER, SEXO, num_internacoes)
-
+ 
 
 for (i in 1999:2019) {
       arq_sih <- paste("E:/SIH/SIH", i, ".csv",sep="")
