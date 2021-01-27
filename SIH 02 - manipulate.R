@@ -89,5 +89,9 @@ for (i in 1999:2019) {
 }
 
 
+SIH_sexo <- SIH_sexo %>% group_by(DT_INTER, SEXO, icsap) %>%
+  mutate(qtde = sum(num_internacoes)) %>%
+  distinct(DT_INTER, SEXO, qtde)
 
 
+temp <- SIH2007 %>% filter(DIAG_PRINC == "A19")

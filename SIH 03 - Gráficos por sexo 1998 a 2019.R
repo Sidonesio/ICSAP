@@ -24,12 +24,12 @@ SIH_sexo$SEXO <- as.factor(SIH_sexo$SEXO)
             
             
             # por mes
-            SIH_sexo %>% filter(icsap ==1 & DT_INTER >= '1998-01-01') %>%
+            graf1 <- SIH_sexo %>% filter(icsap ==1 & DT_INTER >= '1999-01-01' & DT_INTER <= '2018-12-31') %>%
               mutate(mes=floor_date(DT_INTER, "month")) %>%
-              group_by(mes) %>%
+              group_by(mes, SEXO) %>%
               mutate(num_inter = sum(qtde)) %>%
-              distinct(mes, num_inter) %>%
-              ggplot(aes(mes, num_inter))+
+              distinct(mes, SEXO, num_inter) %>%
+              ggplot(aes(mes, num_inter, color=SEXO))+
               geom_line()
 
 
@@ -38,7 +38,8 @@ SIH_sexo$SEXO <- as.factor(SIH_sexo$SEXO)
             #por dia
             SIH_sexo %>% filter((SEXO=="HOMEM" | SEXO=="MULHER") & icsap ==1 & DT_INTER >= "1998-01-01") %>%
               ggplot(aes(DT_INTER, qtde, color = SEXO)) +
-              geom_line()
+              geom_line()+
+              geom_point()
             
             #por mes
             SIH_sexo %>% filter((SEXO=="HOMEM" | SEXO=="MULHER")  & icsap == 1 & DT_INTER >= "1998-01-01") %>%
