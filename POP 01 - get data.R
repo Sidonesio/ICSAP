@@ -87,8 +87,8 @@ POP_TOTAL <- rbind(POP1992, POP1993, POP1994, POP1995, POP1996, POP1997, POP1998
 # test
 library(ggplot2)
 library(dplyr)
-g <- ggplot(data=filter(POP_TOTAL, MUNICIPIO=="Brasília"), aes(x=ANO,y=POPULACAO))
 windows()
+g <- ggplot(data=filter(POP_TOTAL, MUNICIPIO=="Brasília"), aes(x=ANO,y=POPULACAO))
 g + 
   geom_line() + 
   geom_point() +
@@ -96,3 +96,4 @@ g +
        x = "Ano",
        y = "População") + 
   scale_x_continuous(breaks = seq(min(POP_TOTAL$ANO), max(POP_TOTAL$ANO), by = 3))
+
