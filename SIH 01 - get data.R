@@ -749,9 +749,11 @@ SIH2019 <- read.csv2(unz("./Banco de dados/SIH3.zip", "SIH2019.csv"),
 
 ################################## YEAR: 2020 ##################################
 
+D:\2020
+
 # first data loading
 ano_ref <- "20"
-arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
+arquivos <- data.frame(arquivos = list.files("D:/2020/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
 colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
@@ -761,10 +763,10 @@ colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU",
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
-    SIH2020 <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
+    SIH2020 <- read.dbc(paste("D:/2020/", i, sep=""))
     SIH2020 <- SIH2020 %>% select(colunas)
   } else {
-    temp <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
+    temp <- read.dbc(paste("D:/2020/", i, sep=""))
     temp <- temp %>% select(colunas)
     SIH2020 <- rbind(SIH2020, temp)
   }
@@ -773,7 +775,7 @@ for (i in arquivos$arquivos) {
 }
 
 # extract data
-write.csv2(SIH2020, file ="./Banco de dados/SIH/SIH2020.csv")
+write.csv2(SIH2020, file ="D:/Banco de dados/SIH/SIH2020.csv")
 
 # second data loading
 SIH2020 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2020.csv"),
