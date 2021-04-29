@@ -1,5 +1,4 @@
 
-
 #################################### SOURCES ###################################
 
 # estimativas populacionais de 1992 a 1999
@@ -23,71 +22,43 @@ https://sidra.ibge.gov.br/tabela/202
 library(readxl)
 library(dplyr)
 
-# view working directory
-getwd()
-
 #################################### CITIES ####################################
+
+# set working directory
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/IBGE/Population"
+setwd(wd1)
 
 # load data
 library(readxl)
-pop1992 <- read_excel("./Bancos de dados/IBGE/Population/city1992.xlsx",
-                      sheet = "dataset") 
-pop1993 <- read_excel("./Bancos de dados/IBGE/Population/city1993.xlsx",
-                      sheet = "dataset") 
-pop1994 <- read_excel("./Bancos de dados/IBGE/Population/city1994.xlsx",
-                      sheet = "dataset") 
-pop1995 <- read_excel("./Bancos de dados/IBGE/Population/city1995.xlsx",
-                      sheet = "dataset") 
-pop1996 <- read_excel("./Bancos de dados/IBGE/Population/city1996.xlsx",
-                      sheet = "dataset") 
-pop1997 <- read_excel("./Bancos de dados/IBGE/Population/city1997.xlsx",
-                      sheet = "dataset") 
-pop1998 <- read_excel("./Bancos de dados/IBGE/Population/city1998.xlsx",
-                      sheet = "dataset") 
-pop1999 <- read_excel("./Bancos de dados/IBGE/Population/city1999.xlsx",
-                      sheet = "dataset") 
-pop2000 <- read_excel("./Bancos de dados/IBGE/Population/city2000.xlsx",
-                      sheet = "dataset") 
-pop2001 <- read_excel("./Bancos de dados/IBGE/Population/city2001.xlsx",
-                      sheet = "dataset") 
-pop2002 <- read_excel("./Bancos de dados/IBGE/Population/city2002.xlsx",
-                      sheet = "dataset") 
-pop2003 <- read_excel("./Bancos de dados/IBGE/Population/city2003.xlsx",
-                      sheet = "dataset")
-pop2004 <- read_excel("./Bancos de dados/IBGE/Population/city2004.xlsx",
-                      sheet = "dataset")
-pop2005 <- read_excel("./Bancos de dados/IBGE/Population/city2005.xlsx",
-                      sheet = "dataset")
-pop2006 <- read_excel("./Bancos de dados/IBGE/Population/city2006.xlsx",
-                      sheet = "dataset")
-pop2007 <- read_excel("./Bancos de dados/IBGE/Population/city2007.xlsx",
-                      sheet = "dataset")
-pop2008 <- read_excel("./Bancos de dados/IBGE/Population/city2008.xlsx",
-                      sheet = "dataset")
-pop2009 <- read_excel("./Bancos de dados/IBGE/Population/city2009.xlsx",
-                      sheet = "dataset")
-pop2010 <- read_excel("./Bancos de dados/IBGE/Population/city2010.xlsx",
-                      sheet = "dataset")
-pop2011 <- read_excel("./Bancos de dados/IBGE/Population/city2011.xlsx",
-                      sheet = "dataset")
-pop2012 <- read_excel("./Bancos de dados/IBGE/Population/city2012.xlsx",
-                      sheet = "dataset")
-pop2013 <- read_excel("./Bancos de dados/IBGE/Population/city2013.xlsx",
-                      sheet = "dataset")
-pop2014 <- read_excel("./Bancos de dados/IBGE/Population/city2014.xlsx",
-                      sheet = "dataset")
-pop2015 <- read_excel("./Bancos de dados/IBGE/Population/city2015.xlsx",
-                      sheet = "dataset")
-pop2016 <- read_excel("./Bancos de dados/IBGE/Population/city2016.xlsx",
-                      sheet = "dataset")
-pop2017 <- read_excel("./Bancos de dados/IBGE/Population/city2017.xlsx",
-                      sheet = "dataset")
-pop2018 <- read_excel("./Bancos de dados/IBGE/Population/city2018.xlsx",
-                     sheet = "dataset")
-pop2019 <- read_excel("./Bancos de dados/IBGE/Population/city2019.xlsx",
-                      sheet = "dataset")
-pop2020 <- read_excel("./Bancos de dados/IBGE/Population/city2020.xlsx",
-                      sheet = "dataset")
+pop1992 <- read_excel("./city1992.xlsx", sheet = "dataset") 
+pop1993 <- read_excel("./city1993.xlsx", sheet = "dataset") 
+pop1994 <- read_excel("./city1994.xlsx", sheet = "dataset") 
+pop1995 <- read_excel("./city1995.xlsx", sheet = "dataset") 
+pop1996 <- read_excel("./city1996.xlsx", sheet = "dataset") 
+pop1997 <- read_excel("./city1997.xlsx", sheet = "dataset") 
+pop1998 <- read_excel("./city1998.xlsx", sheet = "dataset") 
+pop1999 <- read_excel("./city1999.xlsx", sheet = "dataset") 
+pop2000 <- read_excel("./city2000.xlsx", sheet = "dataset") 
+pop2001 <- read_excel("./city2001.xlsx", sheet = "dataset") 
+pop2002 <- read_excel("./city2002.xlsx", sheet = "dataset") 
+pop2003 <- read_excel("./city2003.xlsx", sheet = "dataset")
+pop2004 <- read_excel("./city2004.xlsx", sheet = "dataset")
+pop2005 <- read_excel("./city2005.xlsx", sheet = "dataset")
+pop2006 <- read_excel("./city2006.xlsx", sheet = "dataset")
+pop2007 <- read_excel("./city2007.xlsx", sheet = "dataset")
+pop2008 <- read_excel("./city2008.xlsx", sheet = "dataset")
+pop2009 <- read_excel("./city2009.xlsx", sheet = "dataset")
+pop2010 <- read_excel("./city2010.xlsx", sheet = "dataset")
+pop2011 <- read_excel("./city2011.xlsx", sheet = "dataset")
+pop2012 <- read_excel("./city2012.xlsx", sheet = "dataset")
+pop2013 <- read_excel("./city2013.xlsx", sheet = "dataset")
+pop2014 <- read_excel("./city2014.xlsx", sheet = "dataset")
+pop2015 <- read_excel("./city2015.xlsx", sheet = "dataset")
+pop2016 <- read_excel("./city2016.xlsx", sheet = "dataset")
+pop2017 <- read_excel("./city2017.xlsx", sheet = "dataset")
+pop2018 <- read_excel("./city2018.xlsx", sheet = "dataset")
+pop2019 <- read_excel("./city2019.xlsx", sheet = "dataset")
+pop2020 <- read_excel("./city2020.xlsx", sheet = "dataset")
 
 # create variable "ANO"
 pop1992$ANO <- 1992
@@ -128,11 +99,26 @@ popCities <- rbind(pop1992, pop1993, pop1994, pop1995, pop1996, pop1997, pop1998
                    pop2019, pop2020)
 
 # export data frame "population all cities all years"
-write.csv(popCities,"./Arquivos exportados/popCities.csv")
+wd2 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+write.csv(popCities,"./popCities.csv")
 
 ################################### COUNTRY ####################################
 
-popBR <- read_excel("./Bancos de dados/IBGE/Population/br.xlsx",
-                    sheet = "dataset")
+# set working directory
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/IBGE/Population"
+setwd(wd1)
+
+# load data
+library(readxl)
+popBr <- read_excel("./br.xlsx", sheet = "dataset")
+
+# export data frame "Brazil all years"
+wd2 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd2)
+write.csv(popBr,"./popBr.csv")
+
+
+
+
 
 
