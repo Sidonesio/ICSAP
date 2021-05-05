@@ -1,5 +1,10 @@
 
-########################## INSTALL AND LOAD PACKAGES ###########################
+############################## PREPARE WORKSPACE ###############################
+
+# set working directory
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC"
+setwd(wd1)
+getwd()
 
 # clean everything done before
 rm(list=ls())
@@ -7,8 +12,10 @@ rm(list=ls())
 # clean just some objects
 rm(SIH1998,SIH2000,SIH2001, SIH2002)
 
-# use more memory
-memory.limit(9999999999)
+# expand memory
+memory.size(max = FALSE)
+memory.size(max = TRUE)
+memory.limit(size = 9999999999999)
 
 # packages' names
 packages <- c("tidyverse", "read.dbc")
@@ -22,9 +29,328 @@ if (any(installed_packages == FALSE)) {
 # load packages
 invisible(lapply(packages, library, character.only = TRUE))
 
+################################## YEAR: 1992 ##################################
+
+# first data loading - select variables
+ano_ref <- "92"
+arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "MORTE", "VAL_TOT", "US_TOT")
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH1992 <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
+    SIH1992 <- SIH1992 %>% select(colunas)
+  } else {
+    temp <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
+    temp <- temp %>% select(colunas)
+    SIH1992 <- rbind(SIH1992, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+# first data loading - all variables
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "92"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH1992 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SIH1992 <- rbind(SIH1992, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+# extract data
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH1992, file ="./SIH1992.csv")
+
+# second data loading
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH1992 <- read.csv2(unz("./SIH1992.zip", "SIH1992.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH1992 <- as.data.frame(cbind(1992, t(dim(SIH1992))))
+library(data.table)
+setnames(dimSIH1992, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH1992, file ="./dimSIH1992.csv")
+
+# build and export data set of column names
+colnamesSIH1992 <- as.data.frame(colnames(SIH1992))
+colnames(colnamesSIH1992)[1] <- "1992"
+write.csv2(colnamesSIH1992, file ="./colnamesSIH1992.csv")
+
+################################## YEAR: 1993 ##################################
+
+# first data loading - select variables
+ano_ref <- "93"
+arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "MORTE", "VAL_TOT", "US_TOT")
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH1993 <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
+    SIH1993 <- SIH1993 %>% select(colunas)
+  } else {
+    temp <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
+    temp <- temp %>% select(colunas)
+    SIH1993 <- rbind(SIH1993, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+# first data loading - all variables
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "93"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH1993 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SIH1993 <- rbind(SIH1993, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+# extract data
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH1993, file ="./SIH1993.csv")
+
+# second data loading
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH1993 <- read.csv2(unz("./SIH1993.zip", "SIH1993.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH1993 <- as.data.frame(cbind(1993, t(dim(SIH1993))))
+library(data.table)
+setnames(dimSIH1993, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH1993, file ="./dimSIH1993.csv")
+
+# build and export data set of column names
+colnamesSIH1993 <- as.data.frame(colnames(SIH1993))
+colnames(colnamesSIH1993)[1] <- "1993"
+write.csv2(colnamesSIH1993, file ="./colnamesSIH1993.csv")
+
+################################## YEAR: 1995 ##################################
+
+# first data loading - select variables
+ano_ref <- "95"
+arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "MORTE", "VAL_TOT", "US_TOT")
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH1995 <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
+    SIH1995 <- SIH1995 %>% select(colunas)
+  } else {
+    temp <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
+    temp <- temp %>% select(colunas)
+    SIH1995 <- rbind(SIH1995, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+# first data loading - all variables
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "95"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH1995 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SIH1995 <- rbind(SIH1995, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+# extract data
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH1995, file ="./SIH1995.csv")
+
+# second data loading
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH1995 <- read.csv2(unz("./SIH1995.zip", "SIH1995.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH1995 <- as.data.frame(cbind(1995, t(dim(SIH1995))))
+library(data.table)
+setnames(dimSIH1995, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH1995, file ="./dimSIH1995.csv")
+
+# build and export data set of column names
+colnamesSIH1995 <- as.data.frame(colnames(SIH1995))
+colnames(colnamesSIH1995)[1] <- "1995"
+write.csv2(colnamesSIH1995, file ="./colnamesSIH1995.csv")
+
+################################## YEAR: 1996 ##################################
+
+# first data loading - select variables
+ano_ref <- "96"
+arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "MORTE", "VAL_TOT", "US_TOT")
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH1996 <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
+    SIH1996 <- SIH1996 %>% select(colunas)
+  } else {
+    temp <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
+    temp <- temp %>% select(colunas)
+    SIH1996 <- rbind(SIH1996, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+# first data loading - all variables
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "96"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH1996 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SIH1996 <- rbind(SIH1996, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+################################## YEAR: 1997 ##################################
+
+# first data loading - select variables
+ano_ref <- "97"
+arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
+             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "MORTE", "VAL_TOT", "US_TOT")
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH1997 <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
+    SIH1997 <- SIH1997 %>% select(colunas)
+  } else {
+    temp <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
+    temp <- temp %>% select(colunas)
+    SIH1997 <- rbind(SIH1997, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+# first data loading - all variables
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "97"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH1997 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SIH1997 <- rbind(SIH1997, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+# extract data
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH1997, file ="./SIH1997.csv")
+
+# second data loading
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH1997 <- read.csv2(unz("./SIH1997.zip", "SIH1997.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH1997 <- as.data.frame(cbind(1997, t(dim(SIH1997))))
+library(data.table)
+setnames(dimSIH1997, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH1997, file ="./dimSIH1997.csv")
+
+# build and export data set of column names
+colnamesSIH1997 <- as.data.frame(colnames(SIH1997))
+colnames(colnamesSIH1997)[1] <- "1997"
+write.csv2(colnamesSIH1997, file ="./colnamesSIH1997.csv")
+
 ################################## YEAR: 1998 ##################################
 
-# first data loading
+# first data loading - select variables
 ano_ref <- "98"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -45,32 +371,67 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
-# extract data
-write.csv2(SIH1998, file ="./Banco de dados/SIH/SIH1998.csv")
-write.csv2(SIH1998, file ="./Banco de dados/csvs/SIH1998.csv")
-
-# second data loading
-SIH1998 <- read.csv2(unz("./Banco de dados/SIH1.zip", "SIH1998.csv"),
-                     header=TRUE, sep=";")
-
-################################## YEAR: 1999 ##################################
-
-# first data loading
-ano_ref <- "99"
-arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
+# first data loading - all variables
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "98"
+arquivos <- data.frame(arquivos = list.files("./"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
-colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
-             "NUM_FILHOS", "CBOR", "MUNIC_RES", "DT_INTER", "DT_SAIDA", 
-             "DIAS_PERM", "MUNIC_MOV", "DIAG_PRINC", "COMPLEX", "MORTE", 
-             "CID_MORTE", "VAL_TOT", "US_TOT")
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
-    SIH1999 <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
+    SIH1998 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SIH1998 <- rbind(SIH1998, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+# extract data
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH1998, file ="./SIH1998.csv")
+
+# second data loading
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH1998 <- read.csv2(unz("./SIH1998.zip", "SIH1998.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH1998 <- as.data.frame(cbind(1998, t(dim(SIH1998))))
+library(data.table)
+setnames(dimSIH1998, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH1998, file ="./dimSIH1998.csv")
+
+# build and export data set of column names
+colnamesSIH1998 <- as.data.frame(colnames(SIH1998))
+colnames(colnamesSIH1998)[1] <- "1998"
+write.csv2(colnamesSIH1998, file ="./colnamesSIH1998.csv")
+
+################################## YEAR: 1999 ##################################
+
+# first data loading - select columns
+ano_ref <- "99"
+arquivos <- data.frame(arquivos = list.files("C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+colunas <- c("SEXO")
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH1999 <- read.dbc(paste("C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/", i, sep=""))
     SIH1999 <- SIH1999 %>% select(colunas)
   } else {
-    temp <- read.dbc(paste("./Banco de dados/SIH/", i, sep=""))
+    temp <- read.dbc(paste("C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/", i, sep=""))
     temp <- temp %>% select(colunas)
     SIH1999 <- rbind(SIH1999, temp)
   }
@@ -78,13 +439,51 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# first data loading - all variables
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "99"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH1999 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SIH1999 <- rbind(SIH1999, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
 # extract data
-write.csv2(SIH1999, file ="./Banco de dados/SIH/SIH1999.csv")
-SIH1999 <- write.csv2(SIH1999, file ="./Banco de dados/csvs/SIH1999.csv")
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH1999, file ="./SIH1999.csv")
 
 # second data loading
-SIH1999 <- read.csv2(unz("./Banco de dados/SIH1.zip", "SIH1999.csv"),
-                     header=TRUE, sep=";")
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH1999 <- read.csv2(unz("./SIH1999.zip", "SIH1999.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH1999 <- as.data.frame(cbind(1999, t(dim(SIH1999))))
+library(data.table)
+setnames(dimSIH1999, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH1999, file ="./dimSIH1999.csv")
+
+# build and export data set of column names
+colnamesSIH1999 <- as.data.frame(colnames(SIH1999))
+colnames(colnamesSIH1999)[1] <- "1999"
+write.csv2(colnamesSIH1999, file ="./colnamesSIH1999.csv")
 
 ################################## YEAR: 2000 ##################################
 
@@ -111,18 +510,60 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# first data loading - all variables
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "00"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH2000 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SIH2000 <- rbind(SIH2000, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
 # extract data
-<<<<<<< HEAD
-SIH2000 <- write.csv2(SIH2000, file ="./Banco de dados/csvs/SIH2000.csv")
-=======
-write.csv2(SIH2000, file ="./Banco de dados/SIH/SIH2000.csv")
->>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH2000, file ="./SIH2000.csv")
 
 # second data loading
-SIH2000 <- read.csv2(unz("./Banco de dados/SIH1.zip", "SIH2000.csv"),
-                     header=TRUE, sep=";")
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH2000 <- read.csv2(unz("./SIH2000.zip", "SIH2000.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH2000 <- as.data.frame(cbind(2000, t(dim(SIH2000))))
+library(data.table)
+setnames(dimSIH2000, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH2000, file ="./dimSIH2000.csv")
+
+# build and export data set of column names
+colnamesSIH2000 <- as.data.frame(colnames(SIH2000))
+colnames(colnamesSIH2000)[1] <- "2000"
+write.csv2(colnamesSIH2000, file ="./colnamesSIH2000.csv")
 
 ################################## YEAR: 2001 ##################################
+
+memory.size(max = FALSE)
+memory.size(max = TRUE)
+memory.limit(size = 9999999999999)
+
+
+
 
 # first data loading
 ano_ref <- "01"
@@ -146,6 +587,32 @@ for (i in arquivos$arquivos) {
   print(i)
   cont=cont+1
 }
+
+# first data loading - all variables
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "01"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH2001 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SIH2001 <- rbind(SIH2001, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+
+
+
+
+
 
 # extract data
 <<<<<<< HEAD
@@ -717,7 +1184,7 @@ SIH2018 <- read.csv2(unz("./Banco de dados/SIH3.zip", "SIH2018.csv"),
 
 ################################## YEAR: 2019 ##################################
 
-# first data loading
+# first data loading - select variables
 ano_ref <- "19"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
@@ -740,6 +1207,34 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# first data loading - all variables
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "19"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH2019 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SIH2019 <- rbind(SIH2019, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+gc()
+memory.limit()
+memory.limit(size=9999999999999)
+memory.size()
+memory.size(max = TRUE)
+memory.size(max = FALSE)
+
+
 # extract data
 write.csv2(SIH2019, file ="./Banco de dados/SIH/CSV/SIH2019.csv")
 
@@ -749,11 +1244,9 @@ SIH2019 <- read.csv2(unz("./Banco de dados/SIH3.zip", "SIH2019.csv"),
 
 ################################## YEAR: 2020 ##################################
 
-D:\2020
-
-# first data loading
+# first data loading - select variables
 ano_ref <- "20"
-arquivos <- data.frame(arquivos = list.files("D:/2020/"))
+arquivos <- data.frame(arquivos = list.files("D:/SIH2020/"))
 arquivos$ano <- substr(arquivos$arquivos, 5, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
 colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU", 
@@ -763,10 +1256,10 @@ colunas <- c("SEXO", "NASC", "COD_IDADE", "IDADE", "RACA_COR", "INSTRU",
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
-    SIH2020 <- read.dbc(paste("D:/2020/", i, sep=""))
+    SIH2020 <- read.dbc(paste("D:/SIH2020/", i, sep=""))
     SIH2020 <- SIH2020 %>% select(colunas)
   } else {
-    temp <- read.dbc(paste("D:/2020/", i, sep=""))
+    temp <- read.dbc(paste("D:/SIH2020/", i, sep=""))
     temp <- temp %>% select(colunas)
     SIH2020 <- rbind(SIH2020, temp)
   }
@@ -774,21 +1267,53 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# first data loading - all variables
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "20"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SIH2020 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SIH2020 <- rbind(SIH2020, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
 # extract data
-write.csv2(SIH2020, file ="D:/Banco de dados/SIH/SIH2020.csv")
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH2020, file ="./SIH2020.csv")
 
 # second data loading
-SIH2020 <- read.csv2(unz("./Banco de dados/SIH.zip", "SIH2020.csv"),
-                     header=TRUE, sep=";")
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH2020 <- read.csv2(unz("./SIH.zip", "SIH2020.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH2020 <- as.data.frame(cbind(2020, t(dim(SIH2020))))
+library(data.table)
+setnames(dimSIH2020, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH2020, file ="./dimSIH2020.csv")
+
+# build and export data set of column names
+colnamesSIH2020 <- as.data.frame(colnames(SIH2020))
+colnames(colnamesSIH2020)[1] <- "2020"
+write.csv2(colnamesSIH2020, file ="./colnamesSIH2020.csv")
 
 
 
-
-
-
-
-
-
-
-
-
+gc()
+memory.limit(99999999999)
