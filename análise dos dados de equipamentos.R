@@ -22,3 +22,12 @@ equip %>% group_by(tipo_equipamento, mes_numerico) %>%
 #média dos 12 meses
 df_equip <- equip %>% group_by(CODUFMUN, tipo_equipamento) %>%
   summarise(n=sum(QT_USO/12))
+
+
+media_odonto <- equip %>% filter(tipo_equipamento == "Equipamentos de Odontologia") %>%
+  group_by(tipo_equipamento, mes_numerico) %>%
+  summarise(qtde=sum(QT_USO),
+            qtde_norm = (qtde-mean(qtde))/sd(qtde))
+
+hist(media_odonto$qtde_norm)
+summary(media_odonto$qtde)
