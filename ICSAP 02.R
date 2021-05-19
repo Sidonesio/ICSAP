@@ -1,24 +1,38 @@
 
+# clean everything done before
+rm(list=ls())
+
 # use more memory
 memory.limit(9999999999)
 
 # load packages
+library(data.table)
 library(tidyverse)
+library(bit64)
 
-# load data
-SIH2010 <- read.csv2("D:/Banco de dados/SIH/SIH2010.csv")
-SIH2011 <- read.csv2("D:/Banco de dados/SIH/SIH2011.csv")
-SIH2012 <- read.csv2("D:/Banco de dados/SIH/SIH2012.csv")
-SIH2013 <- read.csv2("D:/Banco de dados/SIH/SIH2013.csv")
-SIH2014 <- read.csv2("D:/Banco de dados/SIH/SIH2014.csv")
-SIH2015 <- read.csv2("D:/Banco de dados/SIH/SIH2015.csv")
-SIH2016 <- read.csv2("D:/Banco de dados/SIH/SIH2016.csv")
-SIH2017 <- read.csv2("D:/Banco de dados/SIH/SIH2017.csv")
-SIH2018 <- read.csv2("D:/Banco de dados/SIH/SIH2018.csv")
-SIH2019 <- read.csv2("D:/Banco de dados/SIH/SIH2019.csv")
-SIH2020 <- read.csv2("D:/Banco de dados/SIH/SIH2020.csv")
+# read data
+getwd()
+wd1 <- "D:/SIH CSV"
+setwd(wd1)
+SIH2010 <- as.data.frame(fread("./SIH2010.csv", 
+                 select = c("CEP","MUNIC_RES","NASC","SEXO","RACA_COR",
+                            "DT_INTER","DT_SAIDA","DIAG_PRINC","CGC_HOSP",
+                            "MUNIC_MOV","CNES")))
 
-# find with there are hospitalization in 2010
+# subset with distinct values
+df <- SIH2010 %>% 
+  distinct(CEP,MUNIC_RES,NASC,SEXO,RACA_COR,DT_INTER,DIAG_PRINC,CGC_HOSP,
+           MUNIC_MOV,CNES, .keep_all = TRUE)
+
+# number of duplicated values = 316351
+nrow(SIH2010) - nrow(df)
+
+# proportion of duplicated values = 0.02698128
+(nrow(SIH2010) - nrow(df)) / nrow(SIH2010)
+
+
+
+# find if there are hospitalization in 2010
 table(startsWith(as.character(SIH2010$DT_INTER), "2010"))
 table(startsWith(as.character(SIH2011$DT_INTER), "2010"))
 table(startsWith(as.character(SIH2012$DT_INTER), "2010"))
