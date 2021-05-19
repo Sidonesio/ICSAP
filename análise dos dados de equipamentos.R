@@ -5,7 +5,8 @@
 library(xlsx)
 library(read.dbc)
 library(tidyverse)
-
+library(gt)
+library(gapminder)
 # Número de equipamentos totais ao longo do ano (por tipo)
 
 equip %>% group_by(tipo_equipamento, mes_numerico) %>%
@@ -18,6 +19,6 @@ equip %>% group_by(tipo_equipamento, mes_numerico) %>%
 # que valor usar? média do ano, valor em algum mês de referência?
 # usar o indicador de quantidade (por tipo ou todos?)
 
-#média
+#média dos 12 meses
 df_equip <- equip %>% group_by(CODUFMUN, tipo_equipamento) %>%
   summarise(n=sum(QT_USO/12))
