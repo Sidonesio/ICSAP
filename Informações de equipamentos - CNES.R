@@ -9,9 +9,9 @@ library(tidyverse)
 
 arquivos_eq <- list.files("D:/OneDrive/Projetos R/Dados Públicos/Equipamentos/")
 
-equip <- read.dbc(paste("D:/OneDrive/Projetos R/Dados Públicos/Equipamentos/", arquivos_eq[1], sep=""))
+equip <- read.dbc(paste("D:/OneDrive/Projetos R/Dados Públicos/Equipamentos/", arquivos_eq[2], sep=""))
 
-for (i in 2:324) {
+for (i in 3:324) {
   temp <- read.dbc(paste("D:/OneDrive/Projetos R/Dados Públicos/Equipamentos/", arquivos_eq[i], sep=""))
   equip <- rbind(equip, temp)
   print(i)
