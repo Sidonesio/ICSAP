@@ -175,25 +175,104 @@ write.csv2(colnamesSIH1993, file ="./colnamesSIH1993.csv")
 wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
 setwd(wd1)
 getwd()
-ano_ref <- "AC94"
+ano_ref <- "SP94"
 arquivos <- data.frame(arquivos = list.files("./"))
 arquivos$ano <- substr(arquivos$arquivos, 3, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
-    AC1994 <- read.dbc(paste("./", i, sep=""))
+    SP1994 <- read.dbc(paste("./", i, sep=""))
   } else {
     temp <- read.dbc(paste("./", i, sep=""))
-    AC1994 <- rbind(AC1994, temp)
+    SP1994 <- rbind(SP1994, temp)
   }
   print(i)
   cont=cont+1
 }
 
+# first data loading - month: december
+SP_Dez <- read.dbc("./RDSP9412.dbc")
 
+# view column names on both data sets
+colnames(AC1994)
+colnames(AC_Dez)
 
+# equal column name
+names(SP_Dez)[19] <- "VAL_SANGUE"
 
+# merge all months
+SP1994 <- as.data.frame(rbind(SP1994,SP_Dez))
+
+# extract data - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SP1994, file ="./SP1994.csv")
+
+# second data loading - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+AC1994 <- read.csv2("./AC1994.csv", header=TRUE, sep=";")
+AL1994 <- read.csv2("./AL1994.csv", header=TRUE, sep=";")
+AM1994 <- read.csv2("./AM1994.csv", header=TRUE, sep=";")
+AP1994 <- read.csv2("./AP1994.csv", header=TRUE, sep=";")
+BA1994 <- read.csv2("./BA1994.csv", header=TRUE, sep=";")
+CE1994 <- read.csv2("./CE1994.csv", header=TRUE, sep=";")
+DF1994 <- read.csv2("./DF1994.csv", header=TRUE, sep=";")
+ES1994 <- read.csv2("./ES1994.csv", header=TRUE, sep=";")
+GO1994 <- read.csv2("./GO1994.csv", header=TRUE, sep=";")
+MA1994 <- read.csv2("./MA1994.csv", header=TRUE, sep=";")
+MG1994 <- read.csv2("./MG1994.csv", header=TRUE, sep=";")
+MS1994 <- read.csv2("./MS1994.csv", header=TRUE, sep=";")
+MT1994 <- read.csv2("./MT1994.csv", header=TRUE, sep=";")
+PA1994 <- read.csv2("./PA1994.csv", header=TRUE, sep=";")
+PB1994 <- read.csv2("./PB1994.csv", header=TRUE, sep=";")
+PE1994 <- read.csv2("./PE1994.csv", header=TRUE, sep=";")
+PI1994 <- read.csv2("./PI1994.csv", header=TRUE, sep=";")
+PR1994 <- read.csv2("./PR1994.csv", header=TRUE, sep=";")
+RJ1994 <- read.csv2("./RJ1994.csv", header=TRUE, sep=";")
+RN1994 <- read.csv2("./RN1994.csv", header=TRUE, sep=";")
+RO1994 <- read.csv2("./RO1994.csv", header=TRUE, sep=";")
+RR1994 <- read.csv2("./RR1994.csv", header=TRUE, sep=";")
+RS1994 <- read.csv2("./RS1994.csv", header=TRUE, sep=";")
+SC1994 <- read.csv2("./SC1994.csv", header=TRUE, sep=";")
+SE1994 <- read.csv2("./SE1994.csv", header=TRUE, sep=";")
+SP1994 <- read.csv2("./SP1994.csv", header=TRUE, sep=";")
+TO1994 <- read.csv2("./TO1994.csv", header=TRUE, sep=";")
+
+# merge data sets - subset
+SIH1994 <- as.data.frame(rbind(AC1994,AL1994,AM1994,AP1994,BA1994,CE1994,DF1994,
+                               ES1994,GO1994,MA1994,MG1994,MS1994,MT1994,PA1994,
+                               PB1994,PE1994,PI1994,PR1994,RJ1994,RN1994,RO1994,
+                               RR1994,RS1994,SC1994,SE1994,SP1994,TO1994))
+
+# extract data - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH1994, file ="./SIH1994.csv")
+
+# second data loading - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH1994 <- read.csv2(unz("./SIH.zip", "SIH1994.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH1994 <- as.data.frame(cbind(1994, t(dim(SIH1994))))
+library(data.table)
+setnames(dimSIH1994, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH1994, file ="./dimSIH1994.csv")
+
+# build and export data set of column names
+colnamesSIH1994 <- as.data.frame(colnames(SIH1994))
+colnames(colnamesSIH1994)[1] <- "1994"
+write.csv2(colnamesSIH1994, file ="./colnamesSIH1994.csv")
 
 ################################## YEAR: 1995 ##################################
 
@@ -287,25 +366,95 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
-# first data loading - all variables
+# first data loading - subset
 wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
 setwd(wd1)
 getwd()
-ano_ref <- "96"
+ano_ref <- "SP96"
 arquivos <- data.frame(arquivos = list.files("./"))
-arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos$ano <- substr(arquivos$arquivos, 3, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
-    SIH1996 <- read.dbc(paste("./", i, sep=""))
+    SP1996 <- read.dbc(paste("./", i, sep=""))
   } else {
     temp <- read.dbc(paste("./", i, sep=""))
-    SIH1996 <- rbind(SIH1996, temp)
+    SP1996 <- rbind(SP1996, temp)
   }
   print(i)
   cont=cont+1
 }
+
+# extract data - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SP1996, file ="./SP1996.csv")
+
+# second data loading - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+AC1996 <- read.csv2("./AC1996.csv", header=TRUE, sep=";")
+AL1996 <- read.csv2("./AL1996.csv", header=TRUE, sep=";")
+AM1996 <- read.csv2("./AM1996.csv", header=TRUE, sep=";")
+AP1996 <- read.csv2("./AP1996.csv", header=TRUE, sep=";")
+BA1996 <- read.csv2("./BA1996.csv", header=TRUE, sep=";")
+CE1996 <- read.csv2("./CE1996.csv", header=TRUE, sep=";")
+DF1996 <- read.csv2("./DF1996.csv", header=TRUE, sep=";")
+ES1996 <- read.csv2("./ES1996.csv", header=TRUE, sep=";")
+GO1996 <- read.csv2("./GO1996.csv", header=TRUE, sep=";")
+MA1996 <- read.csv2("./MA1996.csv", header=TRUE, sep=";")
+MG1996 <- read.csv2("./MG1996.csv", header=TRUE, sep=";")
+MS1996 <- read.csv2("./MS1996.csv", header=TRUE, sep=";")
+MT1996 <- read.csv2("./MT1996.csv", header=TRUE, sep=";")
+PA1996 <- read.csv2("./PA1996.csv", header=TRUE, sep=";")
+PB1996 <- read.csv2("./PB1996.csv", header=TRUE, sep=";")
+PE1996 <- read.csv2("./PE1996.csv", header=TRUE, sep=";")
+PI1996 <- read.csv2("./PI1996.csv", header=TRUE, sep=";")
+PR1996 <- read.csv2("./PR1996.csv", header=TRUE, sep=";")
+RJ1996 <- read.csv2("./RJ1996.csv", header=TRUE, sep=";")
+RN1996 <- read.csv2("./RN1996.csv", header=TRUE, sep=";")
+RO1996 <- read.csv2("./RO1996.csv", header=TRUE, sep=";")
+RR1996 <- read.csv2("./RR1996.csv", header=TRUE, sep=";")
+RS1996 <- read.csv2("./RS1996.csv", header=TRUE, sep=";")
+SC1996 <- read.csv2("./SC1996.csv", header=TRUE, sep=";")
+SE1996 <- read.csv2("./SE1996.csv", header=TRUE, sep=";")
+SP1996 <- read.csv2("./SP1996.csv", header=TRUE, sep=";")
+TO1996 <- read.csv2("./TO1996.csv", header=TRUE, sep=";")
+
+# merge data sets - subset
+SIH1996 <- as.data.frame(rbind(AC1996,AL1996,AM1996,AP1996,BA1996,CE1996,DF1996,
+                               ES1996,GO1996,MA1996,MG1996,MS1996,MT1996,PA1996,
+                               PB1996,PE1996,PI1996,PR1996,RJ1996,RN1996,RO1996,
+                               RR1996,RS1996,SC1996,SE1996,SP1996,TO1996))
+
+# extract data - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH1996, file ="./SIH1996.csv")
+
+# second data loading - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH1996 <- read.csv2(unz("./SIH.zip", "SIH1996.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH1996 <- as.data.frame(cbind(1996, t(dim(SIH1996))))
+library(data.table)
+setnames(dimSIH1996, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH1996, file ="./dimSIH1996.csv")
+
+# build and export data set of column names
+colnamesSIH1996 <- as.data.frame(colnames(SIH1996))
+colnames(colnamesSIH1996)[1] <- "1996"
+write.csv2(colnamesSIH1996, file ="./colnamesSIH1996.csv")
 
 ################################## YEAR: 1997 ##################################
 
@@ -586,13 +735,6 @@ write.csv2(colnamesSIH2000, file ="./colnamesSIH2000.csv")
 
 ################################## YEAR: 2001 ##################################
 
-memory.size(max = FALSE)
-memory.size(max = TRUE)
-memory.limit(size = 9999999999999)
-
-
-
-
 # first data loading
 ano_ref <- "01"
 arquivos <- data.frame(arquivos = list.files("./Banco de dados/SIH/"))
@@ -616,51 +758,97 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
-# first data loading - all variables
+# first data loading - subset
 wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
 setwd(wd1)
 getwd()
-ano_ref <- "01"
+ano_ref <- "SP01"
 arquivos <- data.frame(arquivos = list.files("./"))
-arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos$ano <- substr(arquivos$arquivos, 3, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
-    SIH2001 <- read.dbc(paste("./", i, sep=""))
+    SP2001 <- read.dbc(paste("./", i, sep=""))
   } else {
     temp <- read.dbc(paste("./", i, sep=""))
-    SIH2001 <- rbind(SIH2001, temp)
+    SP2001 <- rbind(SP2001, temp)
   }
   print(i)
   cont=cont+1
 }
 
+# extract data - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SP2001, file ="./SP2001.csv")
 
+# second data loading - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+AC2001 <- read.csv2("./AC2001.csv", header=TRUE, sep=";")
+AL2001 <- read.csv2("./AL2001.csv", header=TRUE, sep=";")
+AM2001 <- read.csv2("./AM2001.csv", header=TRUE, sep=";")
+AP2001 <- read.csv2("./AP2001.csv", header=TRUE, sep=";")
+BA2001 <- read.csv2("./BA2001.csv", header=TRUE, sep=";")
+CE2001 <- read.csv2("./CE2001.csv", header=TRUE, sep=";")
+DF2001 <- read.csv2("./DF2001.csv", header=TRUE, sep=";")
+ES2001 <- read.csv2("./ES2001.csv", header=TRUE, sep=";")
+GO2001 <- read.csv2("./GO2001.csv", header=TRUE, sep=";")
+MA2001 <- read.csv2("./MA2001.csv", header=TRUE, sep=";")
+MG2001 <- read.csv2("./MG2001.csv", header=TRUE, sep=";")
+MS2001 <- read.csv2("./MS2001.csv", header=TRUE, sep=";")
+MT2001 <- read.csv2("./MT2001.csv", header=TRUE, sep=";")
+PA2001 <- read.csv2("./PA2001.csv", header=TRUE, sep=";")
+PB2001 <- read.csv2("./PB2001.csv", header=TRUE, sep=";")
+PE2001 <- read.csv2("./PE2001.csv", header=TRUE, sep=";")
+PI2001 <- read.csv2("./PI2001.csv", header=TRUE, sep=";")
+PR2001 <- read.csv2("./PR2001.csv", header=TRUE, sep=";")
+RJ2001 <- read.csv2("./RJ2001.csv", header=TRUE, sep=";")
+RN2001 <- read.csv2("./RN2001.csv", header=TRUE, sep=";")
+RO2001 <- read.csv2("./RO2001.csv", header=TRUE, sep=";")
+RR2001 <- read.csv2("./RR2001.csv", header=TRUE, sep=";")
+RS2001 <- read.csv2("./RS2001.csv", header=TRUE, sep=";")
+SC2001 <- read.csv2("./SC2001.csv", header=TRUE, sep=";")
+SE2001 <- read.csv2("./SE2001.csv", header=TRUE, sep=";")
+SP2001 <- read.csv2("./SP2001.csv", header=TRUE, sep=";")
+TO2001 <- read.csv2("./TO2001.csv", header=TRUE, sep=";")
 
+# merge data sets - subset
+SIH2001 <- as.data.frame(rbind(AC2001,AL2001,AM2001,AP2001,BA2001,CE2001,DF2001,
+                               ES2001,GO2001,MA2001,MG2001,MS2001,MT2001,PA2001,
+                               PB2001,PE2001,PI2001,PR2001,RJ2001,RN2001,RO2001,
+                               RR2001,RS2001,SC2001,SE2001,SP2001,TO2001))
 
+# extract data - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH2001, file ="./SIH2001.csv")
 
+# second data loading - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH2001 <- read.csv2(unz("./SIH.zip", "SIH2001.csv"), header=TRUE, sep=";")
 
+# build and export data set of rows and columns (dimensions)
+dimSIH2001 <- as.data.frame(cbind(2001, t(dim(SIH2001))))
+library(data.table)
+setnames(dimSIH2001, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH2001, file ="./dimSIH2001.csv")
 
-# extract data
-<<<<<<< HEAD
-SIH2001 <- write.csv2(SIH2001, file ="./Banco de dados/csvs/SIH2001.csv")
-=======
-write.csv2(SIH2001, file ="./Banco de dados/SIH/SIH2001.csv")
->>>>>>> f6be449c2269f7fa92c4161faee5e90fe6a4ee85
-
-# second data loading
-SIH2001 <- read.csv2(unz("./Banco de dados/SIH1.zip", "SIH2001.csv"),
-                     header=TRUE, sep=";")
+# build and export data set of column names
+colnamesSIH2001 <- as.data.frame(colnames(SIH2001))
+colnames(colnamesSIH2001)[1] <- "2001"
+write.csv2(colnamesSIH2001, file ="./colnamesSIH2001.csv")
 
 ################################## YEAR: 2002 ##################################
-
-memory.size(max = FALSE)
-memory.size(max = TRUE)
-memory.limit(size = 9999999999999)
-
-
-
 
 # first data loading
 ano_ref <- "02"
@@ -685,28 +873,37 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
-# first data loading - all variables
+# first data loading - subset
 wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
 setwd(wd1)
 getwd()
-ano_ref <- "02"
+ano_ref <- "AL02"
 arquivos <- data.frame(arquivos = list.files("./"))
-arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos$ano <- substr(arquivos$arquivos, 3, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
-    SIH2002 <- read.dbc(paste("./", i, sep=""))
+    AL2002 <- read.dbc(paste("./", i, sep=""))
   } else {
     temp <- read.dbc(paste("./", i, sep=""))
-    SIH2002 <- rbind(SIH2002, temp)
+    AL2002 <- rbind(AL2002, temp)
   }
   print(i)
   cont=cont+1
 }
 
+# extract data - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(AL2002, file ="./AC2002.csv")
 
 
+# clean just some objects
+rm(AC2010,AL2010,AM2010,AP2010,BA2010,CE2010,DF2010,ES2010,GO2010,MA2010,MG2010,
+   MS2010,MT2010,PA2010,PB2010,PE2010,PI2010,PR2010,RJ2010,RN2010,RO2010,RR2010,
+   RS2010,SC2010,SE2010,SP2010,TO2010)
 
 
 
@@ -747,21 +944,21 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
-# first data loading - all variables
+# first data loading - subset
 wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
 setwd(wd1)
 getwd()
-ano_ref <- "03"
+ano_ref <- "AC03"
 arquivos <- data.frame(arquivos = list.files("./"))
-arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos$ano <- substr(arquivos$arquivos, 3, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
-    SIH2003 <- read.dbc(paste("./", i, sep=""))
+    AC2003 <- read.dbc(paste("./", i, sep=""))
   } else {
     temp <- read.dbc(paste("./", i, sep=""))
-    SIH2003 <- rbind(SIH2003, temp)
+    AC2003 <- rbind(AC2003, temp)
   }
   print(i)
   cont=cont+1
@@ -807,6 +1004,43 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
+# first data loading - subset
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "AC04"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 3, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    AC2004 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    AC2004 <- rbind(AC2004, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+# extract data - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SP2005, file ="./SP2005.csv")
+
+
+
+
+# clean just some objects
+rm(AC2010,AL2010,AM2010,AP2010,BA2010,CE2010,DF2010,ES2010,GO2010,MA2010,MG2010,
+   MS2010,MT2010,PA2010,PB2010,PE2010,PI2010,PR2010,RJ2010,RN2010,RO2010,RR2010,
+   RS2010,SC2010,SE2010,SP2010,TO2010)
+
+
+
+
 # extract data
 <<<<<<< HEAD
 SIH2004 <- write.csv2(SIH2004, file ="./Banco de dados/csvs/SIH2004.csv")
@@ -843,13 +1077,95 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
-# extract data
+# first data loading - subset
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "SP05"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 3, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SP2005 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SP2005 <- rbind(SP2005, temp)
+  }
+  print(i)
+  cont=cont+1
+}
 
-SIH2005 <- write.csv2(SIH2005, file ="./Banco de dados/csvs/SIH2005.csv")
+# extract data - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SP2005, file ="./SP2005.csv")
 
-# second data loading
-SIH2005 <- read.csv2(unz("./Banco de dados/SIH2.zip", "SIH2005.csv"),
-                     header=TRUE, sep=";")
+# second data loading - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+AC2005 <- read.csv2("./AC2005.csv", header=TRUE, sep=";")
+AL2005 <- read.csv2("./AL2005.csv", header=TRUE, sep=";")
+AM2005 <- read.csv2("./AM2005.csv", header=TRUE, sep=";")
+AP2005 <- read.csv2("./AP2005.csv", header=TRUE, sep=";")
+BA2005 <- read.csv2("./BA2005.csv", header=TRUE, sep=";")
+CE2005 <- read.csv2("./CE2005.csv", header=TRUE, sep=";")
+DF2005 <- read.csv2("./DF2005.csv", header=TRUE, sep=";")
+ES2005 <- read.csv2("./ES2005.csv", header=TRUE, sep=";")
+GO2005 <- read.csv2("./GO2005.csv", header=TRUE, sep=";")
+MA2005 <- read.csv2("./MA2005.csv", header=TRUE, sep=";")
+MG2005 <- read.csv2("./MG2005.csv", header=TRUE, sep=";")
+MS2005 <- read.csv2("./MS2005.csv", header=TRUE, sep=";")
+MT2005 <- read.csv2("./MT2005.csv", header=TRUE, sep=";")
+PA2005 <- read.csv2("./PA2005.csv", header=TRUE, sep=";")
+PB2005 <- read.csv2("./PB2005.csv", header=TRUE, sep=";")
+PE2005 <- read.csv2("./PE2005.csv", header=TRUE, sep=";")
+PI2005 <- read.csv2("./PI2005.csv", header=TRUE, sep=";")
+PR2005 <- read.csv2("./PR2005.csv", header=TRUE, sep=";")
+RJ2005 <- read.csv2("./RJ2005.csv", header=TRUE, sep=";")
+RN2005 <- read.csv2("./RN2005.csv", header=TRUE, sep=";")
+RO2005 <- read.csv2("./RO2005.csv", header=TRUE, sep=";")
+RR2005 <- read.csv2("./RR2005.csv", header=TRUE, sep=";")
+RS2005 <- read.csv2("./RS2005.csv", header=TRUE, sep=";")
+SC2005 <- read.csv2("./SC2005.csv", header=TRUE, sep=";")
+SE2005 <- read.csv2("./SE2005.csv", header=TRUE, sep=";")
+SP2005 <- read.csv2("./SP2005.csv", header=TRUE, sep=";")
+TO2005 <- read.csv2("./TO2005.csv", header=TRUE, sep=";")
+
+# merge data sets - subset
+SIH2005 <- as.data.frame(rbind(AC2005,AL2005,AM2005,AP2005,BA2005,CE2005,DF2005,
+                               ES2005,GO2005,MA2005,MG2005,MS2005,MT2005,PA2005,
+                               PB2005,PE2005,PI2005,PR2005,RJ2005,RN2005,RO2005,
+                               RR2005,RS2005,SC2005,SE2005,SP2005,TO2005))
+
+# extract data - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH2005, file ="./SIH2005.csv")
+
+# second data loading - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH2005 <- read.csv2(unz("./SIH.zip", "SIH2005.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH2005 <- as.data.frame(cbind(2005, t(dim(SIH2005))))
+library(data.table)
+setnames(dimSIH2005, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH2005, file ="./dimSIH2005.csv")
+
+# build and export data set of column names
+colnamesSIH2005 <- as.data.frame(colnames(SIH2005))
+colnames(colnamesSIH2005)[1] <- "2005"
+write.csv2(colnamesSIH2005, file ="./colnamesSIH2005.csv")
 
 ################################## YEAR: 2006 ##################################
 
@@ -875,6 +1191,37 @@ for (i in arquivos$arquivos) {
   print(i)
   cont=cont+1
 }
+
+# first data loading - subset
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "AC06"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 3, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    AC2006 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    AC2006 <- rbind(AC2006, temp)
+  }
+  print(i)
+  cont=cont+1
+}
+
+# extract data - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(AC2006, file ="./AC2006.csv")
+
+
+
+
+
 
 # extract data
 write.csv2(SIH2006, file ="./Banco de dados/csvs/SIH2006.csv")
@@ -908,12 +1255,95 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
-# extract data
-write.csv2(SIH2007, file ="./Banco de dados/csvs/SIH2007.csv")
+# first data loading - subset
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "SP07"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 3, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SP2007 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SP2007 <- rbind(SP2007, temp)
+  }
+  print(i)
+  cont=cont+1
+}
 
-# second data loading
-SIH2007 <- read.csv2(unz("./Banco de dados/SIH2.zip", "SIH2007.csv"),
-                     header=TRUE, sep=";")
+# extract data - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SP2007, file ="./SP2007.csv")
+
+# second data loading - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+AC2007 <- read.csv2("./AC2007.csv", header=TRUE, sep=";")
+AL2007 <- read.csv2("./AL2007.csv", header=TRUE, sep=";")
+AM2007 <- read.csv2("./AM2007.csv", header=TRUE, sep=";")
+AP2007 <- read.csv2("./AP2007.csv", header=TRUE, sep=";")
+BA2007 <- read.csv2("./BA2007.csv", header=TRUE, sep=";")
+CE2007 <- read.csv2("./CE2007.csv", header=TRUE, sep=";")
+DF2007 <- read.csv2("./DF2007.csv", header=TRUE, sep=";")
+ES2007 <- read.csv2("./ES2007.csv", header=TRUE, sep=";")
+GO2007 <- read.csv2("./GO2007.csv", header=TRUE, sep=";")
+MA2007 <- read.csv2("./MA2007.csv", header=TRUE, sep=";")
+MG2007 <- read.csv2("./MG2007.csv", header=TRUE, sep=";")
+MS2007 <- read.csv2("./MS2007.csv", header=TRUE, sep=";")
+MT2007 <- read.csv2("./MT2007.csv", header=TRUE, sep=";")
+PA2007 <- read.csv2("./PA2007.csv", header=TRUE, sep=";")
+PB2007 <- read.csv2("./PB2007.csv", header=TRUE, sep=";")
+PE2007 <- read.csv2("./PE2007.csv", header=TRUE, sep=";")
+PI2007 <- read.csv2("./PI2007.csv", header=TRUE, sep=";")
+PR2007 <- read.csv2("./PR2007.csv", header=TRUE, sep=";")
+RJ2007 <- read.csv2("./RJ2007.csv", header=TRUE, sep=";")
+RN2007 <- read.csv2("./RN2007.csv", header=TRUE, sep=";")
+RO2007 <- read.csv2("./RO2007.csv", header=TRUE, sep=";")
+RR2007 <- read.csv2("./RR2007.csv", header=TRUE, sep=";")
+RS2007 <- read.csv2("./RS2007.csv", header=TRUE, sep=";")
+SC2007 <- read.csv2("./SC2007.csv", header=TRUE, sep=";")
+SE2007 <- read.csv2("./SE2007.csv", header=TRUE, sep=";")
+SP2007 <- read.csv2("./SP2007.csv", header=TRUE, sep=";")
+TO2007 <- read.csv2("./TO2007.csv", header=TRUE, sep=";")
+
+# merge data sets - subset
+SIH2007 <- as.data.frame(rbind(AC2007,AL2007,AM2007,AP2007,BA2007,CE2007,DF2007,
+                               ES2007,GO2007,MA2007,MG2007,MS2007,MT2007,PA2007,
+                               PB2007,PE2007,PI2007,PR2007,RJ2007,RN2007,RO2007,
+                               RR2007,RS2007,SC2007,SE2007,SP2007,TO2007))
+
+# extract data - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH2007, file ="./SIH2007.csv")
+
+# second data loading - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH2007 <- read.csv2(unz("./SIH.zip", "SIH2007.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH2007 <- as.data.frame(cbind(2007, t(dim(SIH2007))))
+library(data.table)
+setnames(dimSIH2007, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH2007, file ="./dimSIH2007.csv")
+
+# build and export data set of column names
+colnamesSIH2007 <- as.data.frame(colnames(SIH2007))
+colnames(colnamesSIH2007)[1] <- "2007"
+write.csv2(colnamesSIH2007, file ="./colnamesSIH2007.csv")
 
 ################################## YEAR: 2008 ##################################
 
@@ -940,12 +1370,95 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
-# extract data
-write.csv2(SIH2008, file ="./Banco de dados/SIH/SIH2008.csv")
+# first data loading - subset
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "SP08"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 3, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SP2008 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SP2008 <- rbind(SP2008, temp)
+  }
+  print(i)
+  cont=cont+1
+}
 
-# second data loading
-SIH2008 <- read.csv2(unz("./Banco de dados/SIH2.zip", "SIH2008.csv"),
-                     header=TRUE, sep=";")
+# extract data - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SP2008, file ="./SP2008.csv")
+
+# second data loading - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+AC2008 <- read.csv2("./AC2008.csv", header=TRUE, sep=";")
+AL2008 <- read.csv2("./AL2008.csv", header=TRUE, sep=";")
+AM2008 <- read.csv2("./AM2008.csv", header=TRUE, sep=";")
+AP2008 <- read.csv2("./AP2008.csv", header=TRUE, sep=";")
+BA2008 <- read.csv2("./BA2008.csv", header=TRUE, sep=";")
+CE2008 <- read.csv2("./CE2008.csv", header=TRUE, sep=";")
+DF2008 <- read.csv2("./DF2008.csv", header=TRUE, sep=";")
+ES2008 <- read.csv2("./ES2008.csv", header=TRUE, sep=";")
+GO2008 <- read.csv2("./GO2008.csv", header=TRUE, sep=";")
+MA2008 <- read.csv2("./MA2008.csv", header=TRUE, sep=";")
+MG2008 <- read.csv2("./MG2008.csv", header=TRUE, sep=";")
+MS2008 <- read.csv2("./MS2008.csv", header=TRUE, sep=";")
+MT2008 <- read.csv2("./MT2008.csv", header=TRUE, sep=";")
+PA2008 <- read.csv2("./PA2008.csv", header=TRUE, sep=";")
+PB2008 <- read.csv2("./PB2008.csv", header=TRUE, sep=";")
+PE2008 <- read.csv2("./PE2008.csv", header=TRUE, sep=";")
+PI2008 <- read.csv2("./PI2008.csv", header=TRUE, sep=";")
+PR2008 <- read.csv2("./PR2008.csv", header=TRUE, sep=";")
+RJ2008 <- read.csv2("./RJ2008.csv", header=TRUE, sep=";")
+RN2008 <- read.csv2("./RN2008.csv", header=TRUE, sep=";")
+RO2008 <- read.csv2("./RO2008.csv", header=TRUE, sep=";")
+RR2008 <- read.csv2("./RR2008.csv", header=TRUE, sep=";")
+RS2008 <- read.csv2("./RS2008.csv", header=TRUE, sep=";")
+SC2008 <- read.csv2("./SC2008.csv", header=TRUE, sep=";")
+SE2008 <- read.csv2("./SE2008.csv", header=TRUE, sep=";")
+SP2008 <- read.csv2("./SP2008.csv", header=TRUE, sep=";")
+TO2008 <- read.csv2("./TO2008.csv", header=TRUE, sep=";")
+
+# merge data sets - subset
+SIH2008 <- as.data.frame(rbind(AC2008,AL2008,AM2008,AP2008,BA2008,CE2008,DF2008,
+                               ES2008,GO2008,MA2008,MG2008,MS2008,MT2008,PA2008,
+                               PB2008,PE2008,PI2008,PR2008,RJ2008,RN2008,RO2008,
+                               RR2008,RS2008,SC2008,SE2008,SP2008,TO2008))
+
+# extract data - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH2008, file ="./SIH2008.csv")
+
+# second data loading - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH2008 <- read.csv2(unz("./SIH.zip", "SIH2008.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH2008 <- as.data.frame(cbind(2008, t(dim(SIH2008))))
+library(data.table)
+setnames(dimSIH2008, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH2008, file ="./dimSIH2008.csv")
+
+# build and export data set of column names
+colnamesSIH2008 <- as.data.frame(colnames(SIH2008))
+colnames(colnamesSIH2008)[1] <- "2008"
+write.csv2(colnamesSIH2008, file ="./colnamesSIH2008.csv")
 
 ################################## YEAR: 2009 ##################################
 
@@ -972,12 +1485,95 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
-# extract data
-write.csv2(SIH2009, file ="./Banco de dados/SIH/SIH2009.csv")
+# first data loading - subset
+wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
+setwd(wd1)
+getwd()
+ano_ref <- "SP09"
+arquivos <- data.frame(arquivos = list.files("./"))
+arquivos$ano <- substr(arquivos$arquivos, 3, 6)
+arquivos <- arquivos %>% filter(ano == ano_ref)
+cont=0
+for (i in arquivos$arquivos) {
+  if(cont==0) {
+    SP2009 <- read.dbc(paste("./", i, sep=""))
+  } else {
+    temp <- read.dbc(paste("./", i, sep=""))
+    SP2009 <- rbind(SP2009, temp)
+  }
+  print(i)
+  cont=cont+1
+}
 
-# second data loading
-SIH2009 <- read.csv2(unz("./Banco de dados/SIH2.zip", "SIH2009.csv"),
-                     header=TRUE, sep=";")
+# extract data - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SP2009, file ="./SP2009.csv")
+
+# second data loading - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+AC2009 <- read.csv2("./AC2009.csv", header=TRUE, sep=";")
+AL2009 <- read.csv2("./AL2009.csv", header=TRUE, sep=";")
+AM2009 <- read.csv2("./AM2009.csv", header=TRUE, sep=";")
+AP2009 <- read.csv2("./AP2009.csv", header=TRUE, sep=";")
+BA2009 <- read.csv2("./BA2009.csv", header=TRUE, sep=";")
+CE2009 <- read.csv2("./CE2009.csv", header=TRUE, sep=";")
+DF2009 <- read.csv2("./DF2009.csv", header=TRUE, sep=";")
+ES2009 <- read.csv2("./ES2009.csv", header=TRUE, sep=";")
+GO2009 <- read.csv2("./GO2009.csv", header=TRUE, sep=";")
+MA2009 <- read.csv2("./MA2009.csv", header=TRUE, sep=";")
+MG2009 <- read.csv2("./MG2009.csv", header=TRUE, sep=";")
+MS2009 <- read.csv2("./MS2009.csv", header=TRUE, sep=";")
+MT2009 <- read.csv2("./MT2009.csv", header=TRUE, sep=";")
+PA2009 <- read.csv2("./PA2009.csv", header=TRUE, sep=";")
+PB2009 <- read.csv2("./PB2009.csv", header=TRUE, sep=";")
+PE2009 <- read.csv2("./PE2009.csv", header=TRUE, sep=";")
+PI2009 <- read.csv2("./PI2009.csv", header=TRUE, sep=";")
+PR2009 <- read.csv2("./PR2009.csv", header=TRUE, sep=";")
+RJ2009 <- read.csv2("./RJ2009.csv", header=TRUE, sep=";")
+RN2009 <- read.csv2("./RN2009.csv", header=TRUE, sep=";")
+RO2009 <- read.csv2("./RO2009.csv", header=TRUE, sep=";")
+RR2009 <- read.csv2("./RR2009.csv", header=TRUE, sep=";")
+RS2009 <- read.csv2("./RS2009.csv", header=TRUE, sep=";")
+SC2009 <- read.csv2("./SC2009.csv", header=TRUE, sep=";")
+SE2009 <- read.csv2("./SE2009.csv", header=TRUE, sep=";")
+SP2009 <- read.csv2("./SP2009.csv", header=TRUE, sep=";")
+TO2009 <- read.csv2("./TO2009.csv", header=TRUE, sep=";")
+
+# merge data sets - subset
+SIH2009 <- as.data.frame(rbind(AC2009,AL2009,AM2009,AP2009,BA2009,CE2009,DF2009,
+                               ES2009,GO2009,MA2009,MG2009,MS2009,MT2009,PA2009,
+                               PB2009,PE2009,PI2009,PR2009,RJ2009,RN2009,RO2009,
+                               RR2009,RS2009,SC2009,SE2009,SP2009,TO2009))
+
+# extract data - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH2009, file ="./SIH2009.csv")
+
+# second data loading - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH2009 <- read.csv2(unz("./SIH.zip", "SIH2009.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH2009 <- as.data.frame(cbind(2009, t(dim(SIH2009))))
+library(data.table)
+setnames(dimSIH2009, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH2009, file ="./dimSIH2009.csv")
+
+# build and export data set of column names
+colnamesSIH2009 <- as.data.frame(colnames(SIH2009))
+colnames(colnamesSIH2009)[1] <- "2009"
+write.csv2(colnamesSIH2009, file ="./colnamesSIH2009.csv")
 
 ################################## YEAR: 2010 ##################################
 
@@ -2059,35 +2655,95 @@ for (i in arquivos$arquivos) {
   cont=cont+1
 }
 
-# first data loading - all variables
+# first data loading - subset
 wd1 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/DBC/"
 setwd(wd1)
 getwd()
-ano_ref <- "19"
+ano_ref <- "SP19"
 arquivos <- data.frame(arquivos = list.files("./"))
-arquivos$ano <- substr(arquivos$arquivos, 5, 6)
+arquivos$ano <- substr(arquivos$arquivos, 3, 6)
 arquivos <- arquivos %>% filter(ano == ano_ref)
 cont=0
 for (i in arquivos$arquivos) {
   if(cont==0) {
-    SIH2019 <- read.dbc(paste("./", i, sep=""))
+    SP2019 <- read.dbc(paste("./", i, sep=""))
   } else {
     temp <- read.dbc(paste("./", i, sep=""))
-    SIH2019 <- rbind(SIH2019, temp)
+    SP2019 <- rbind(SP2019, temp)
   }
   print(i)
   cont=cont+1
 }
 
+# extract data - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SP2019, file ="./SP2019.csv")
 
+# second data loading - subset
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+AC2019 <- read.csv2("./AC2019.csv", header=TRUE, sep=";")
+AL2019 <- read.csv2("./AL2019.csv", header=TRUE, sep=";")
+AM2019 <- read.csv2("./AM2019.csv", header=TRUE, sep=";")
+AP2019 <- read.csv2("./AP2019.csv", header=TRUE, sep=";")
+BA2019 <- read.csv2("./BA2019.csv", header=TRUE, sep=";")
+CE2019 <- read.csv2("./CE2019.csv", header=TRUE, sep=";")
+DF2019 <- read.csv2("./DF2019.csv", header=TRUE, sep=";")
+ES2019 <- read.csv2("./ES2019.csv", header=TRUE, sep=";")
+GO2019 <- read.csv2("./GO2019.csv", header=TRUE, sep=";")
+MA2019 <- read.csv2("./MA2019.csv", header=TRUE, sep=";")
+MG2019 <- read.csv2("./MG2019.csv", header=TRUE, sep=";")
+MS2019 <- read.csv2("./MS2019.csv", header=TRUE, sep=";")
+MT2019 <- read.csv2("./MT2019.csv", header=TRUE, sep=";")
+PA2019 <- read.csv2("./PA2019.csv", header=TRUE, sep=";")
+PB2019 <- read.csv2("./PB2019.csv", header=TRUE, sep=";")
+PE2019 <- read.csv2("./PE2019.csv", header=TRUE, sep=";")
+PI2019 <- read.csv2("./PI2019.csv", header=TRUE, sep=";")
+PR2019 <- read.csv2("./PR2019.csv", header=TRUE, sep=";")
+RJ2019 <- read.csv2("./RJ2019.csv", header=TRUE, sep=";")
+RN2019 <- read.csv2("./RN2019.csv", header=TRUE, sep=";")
+RO2019 <- read.csv2("./RO2019.csv", header=TRUE, sep=";")
+RR2019 <- read.csv2("./RR2019.csv", header=TRUE, sep=";")
+RS2019 <- read.csv2("./RS2019.csv", header=TRUE, sep=";")
+SC2019 <- read.csv2("./SC2019.csv", header=TRUE, sep=";")
+SE2019 <- read.csv2("./SE2019.csv", header=TRUE, sep=";")
+SP2019 <- read.csv2("./SP2019.csv", header=TRUE, sep=";")
+TO2019 <- read.csv2("./TO2019.csv", header=TRUE, sep=";")
 
+# merge data sets - subset
+SIH2019 <- as.data.frame(rbind(AC2019,AL2019,AM2019,AP2019,BA2019,CE2019,DF2019,
+                               ES2019,GO2019,MA2019,MG2019,MS2019,MT2019,PA2019,
+                               PB2019,PE2019,PI2019,PR2019,RJ2019,RN2019,RO2019,
+                               RR2019,RS2019,SC2019,SE2019,SP2019,TO2019))
 
-# extract data
-write.csv2(SIH2019, file ="./Banco de dados/SIH/CSV/SIH2019.csv")
+# extract data - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+write.csv2(SIH2019, file ="./SIH2019.csv")
 
-# second data loading
-SIH2019 <- read.csv2(unz("./Banco de dados/SIH3.zip", "SIH2019.csv"),
-                     header=TRUE, sep=";")
+# second data loading - complete
+wd2 <- "C:/Users/Dell/OneDrive/R/Bancos de dados/SIH/CSV"
+setwd(wd2)
+getwd()
+SIH2019 <- read.csv2(unz("./SIH.zip", "SIH2019.csv"), header=TRUE, sep=";")
+
+# build and export data set of rows and columns (dimensions)
+dimSIH2019 <- as.data.frame(cbind(2019, t(dim(SIH2019))))
+library(data.table)
+setnames(dimSIH2019, old = c("V1","V2","V3"), new = c("Year","Rows","Columns"))
+wd3 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd3)
+getwd()
+write.csv2(dimSIH2019, file ="./dimSIH2019.csv")
+
+# build and export data set of column names
+colnamesSIH2019 <- as.data.frame(colnames(SIH2019))
+colnames(colnamesSIH2019)[1] <- "2019"
+write.csv2(colnamesSIH2019, file ="./colnamesSIH2019.csv")
 
 ################################## YEAR: 2020 ##################################
 
