@@ -1,4 +1,8 @@
 
+# packages
+library(bestNormalize)
+library(ggplot2)
+
 # read data
 wd1 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
 setwd(wd1)
@@ -66,6 +70,7 @@ hist(fit$residuals)
 
 # scatterplot ICSAPpropNorm vs PopNorm
 g <- ggplot(data = df2, aes(x = PopNorm, y = ICSAPpropNorm))
+par(mfrow = c(1, 1))
 g + 
   geom_point(alpha = .4, color = "blue4") + 
   geom_smooth(colour = "red")
@@ -84,4 +89,21 @@ plot(fit)
 par(mfrow = c(1, 1))
 hist(fit$residuals)
 
+# simple linear regression ICSAPrate vs Population
+fit <- lm(ICSAPrate ~ POPULACAO, data = df1)
+summary(fit)
+par(mfrow = c(2, 2))
+plot(fit)
+
+# simple linear regression ICSAPprop vs Population
+fit <- lm(ICSAPprop ~ POPULACAO, data = df1)
+summary(fit)
+par(mfrow = c(2, 2))
+plot(fit)
+
+# simple linear regression ICSAPprop vs PopNorm
+fit <- lm(df1$ICSAPprop ~ df2$PopNorm)
+summary(fit)
+par(mfrow = c(2, 2))
+plot(fit)
 
