@@ -1,0 +1,56 @@
+;tipo_equipamento;equipamento;Usado em diagnostico de CSAP? ;CID
+1;Equipamentos de Diagnostico por Imagem;ULTRASSOM CONVENCIONAL;SIM;
+2;Equipamentos de Diagnostico por Imagem;RAIO X ATE 100 MA;SIM;
+3;Equipamentos de Diagnostico por Imagem;RAIO X DE 100 A 500 MA;SIM;
+4;Equipamentos de Diagnostico por Imagem;ULTRASSOM ECOGRAFO;SIM;
+5;Equipamentos de Diagnostico por Imagem;RAIO X DENTARIO;NAO;
+6;Equipamentos de Diagnostico por Imagem;ULTRASSOM DOPPLER COLORIDO;SIM;
+7;Equipamentos de Diagnostico por Imagem;MAMOGRAFO COM COMANDO SIMPLES;NAO;
+8;Equipamentos de Diagnostico por Imagem;RAIO X MAIS DE 500MA;SIM;
+9;Equipamentos de Diagnostico por Imagem;TOM”GRAFO COMPUTADORIZADO;SIM;
+10;Equipamentos de Diagnostico por Imagem;GAMA CAMARA;SIM;
+11;Equipamentos de Diagnostico por Imagem;RESSONANCIA MAGNETICA;SIM;
+12;Equipamentos de Diagnostico por Imagem;RAIO X PARA DENSITOMETRIA OSSEA;NAO;
+13;Equipamentos de Diagnostico por Imagem;RAIO X COM FLUOROSCOPIA;SIM;
+14;Equipamentos de Diagnostico por Imagem;MAMOGRAFO COM ESTEREOTAXIA;NAO;
+15;Equipamentos de Diagnostico por Imagem;RAIO X PARA HEMODINAMICA;NAO;PROCEDIMENTO INTERVENCIONISTA
+16;Equipamentos de Infra-Estrutura;GRUPO GERADOR;NAO;
+17;Equipamentos de Infra-Estrutura;USINA DE OXIGENIO;NAO;
+18;Equipamentos de Infra-Estrutura;CONTROLE AMBIENTAL/AR-CONDICIONADO CENTRAL;NAO;
+19;Equipamentos de Odontologia;EQUIPO ODONTOLOGICO;NAO;
+20;Equipamentos de Odontologia;COMPRESSOR ODONTOLOGICO;NAO;
+21;Equipamentos de Odontologia;CANETA DE ALTA ROTACAO;NAO;
+22;Equipamentos de Odontologia;FOTOPOLIMERIZADOR;NAO;
+23;Equipamentos de Odontologia;AMALGAMADOR;NAO;
+24;Equipamentos de Odontologia;CANETA DE BAIXA ROTACAO;NAO;
+25;Equipamentos de Odontologia;APARELHO DE PROFILAXIA C/ JATO DE BICARBONATO;NAO;
+26;Equipamentos para Manutencao da Vida;MONITOR DE PRESSAO INVASIVO;NAO;
+27;Equipamentos para Manutencao da Vida;MONITOR DE PRESSAO NAO-INVASIVO;SIM;PODE TER EM AMBULATÓRIO
+28;Equipamentos para Manutencao da Vida;DESFIBRILADOR;NAO;
+29;Equipamentos para Manutencao da Vida;REANIMADOR PULMONAR/AMBU;NAO;
+30;Equipamentos para Manutencao da Vida;BER«O AQUECIDO;NAO;
+31;Equipamentos para Manutencao da Vida;INCUBADORA;NAO;
+32;Equipamentos para Manutencao da Vida;BOMBA DE INFUSAO;NAO;
+33;Equipamentos para Manutencao da Vida;MONITOR DE ECG;NAO;INTRA-HOSPITALAR
+34;Equipamentos para Manutencao da Vida;EQUIPAMENTO DE FOTOTERAPIA;NAO;
+35;Equipamentos para Manutencao da Vida;RESPIRADOR/VENTILADOR;NAO;
+36;Equipamentos para Manutencao da Vida;BILIRRUBINOMETRO;NAO;
+37;Equipamentos para Manutencao da Vida;MARCAPASSO TEMPORARIO;NAO;
+38;Equipamentos para Manutencao da Vida;BOMBA/BALAO INTRA-AORTICO;NAO;
+39;Equipamentos para Manutencao da Vida;DEBITOMETRO;NAO;
+40;Equipamentos por Metodos Graficos;ELETROCARDIOGRAFO;SIM;
+41;Equipamentos por Metodos Graficos;ELETROENCEFALOGRAFO;SIM;
+42;Equipamentos por Metodos Opticos;EQUIPAMENTOS PARA OPTOMETRIA;NAO;
+43;Equipamentos por Metodos Opticos;MICROSCOPIO CIRURGICO;NAO;
+44;Equipamentos por Metodos Opticos;ENDOSCOPIO DIGESTIVO;SIM;K25 a K28, K92.0, K92.1, K92.2
+45;Equipamentos por Metodos Opticos;LAPAROSCOPIO/VÕDEO;SIM;
+46;Equipamentos por Metodos Opticos;ENDOSCOPIO DAS VIAS URINARIAS;SIM;
+47;Equipamentos por Metodos Opticos;ENDOSCOPIO DAS VIAS RESPIRATORIAS;SIM;
+48;Outros Equipamentos;FORNO DE BIER;NAO;
+49;Outros Equipamentos;APARELHO DE ELETROESTIMULACAO;NAO;
+50;Outros Equipamentos;APARELHO DE DIATERMIA POR ULTRASSOM/ONDAS CURTAS;NAO;
+51;Outros Equipamentos;EQUIPAMENTO PARA HEMODIALISE;NAO;
+52;Outros Equipamentos;EQUIPAMENTO PARA AUDIOMETRIA;NAO;
+53;Outros Equipamentos;EQUIPAMENTO DE CIRCULACAO EXTRACORPOREA;NAO;
+54;Outros Equipamentos;EQUIPAMENTOS DE AFERESE;NAO;
+55;Outros Equipamentos;BOMBA DE INFUSAO DE HEMODERIVADOS;NAO;
