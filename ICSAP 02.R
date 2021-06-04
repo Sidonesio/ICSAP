@@ -14,11 +14,8 @@ library(bit64)
 getwd()
 wd1 <- "D:/SIH CSV"
 setwd(wd1)
-SIH2010 <- as.data.frame(fread("./SIH2010.csv", 
-                 select = c("CEP","MUNIC_RES","NASC","SEXO","RACA_COR",
-                            "DT_INTER","DT_SAIDA","DIAG_PRINC","CGC_HOSP",
-                            "MUNIC_MOV","CNES")))
-
+SIH2010 <- (fread("./SIH2010.csv"))
+                
 # subset with distinct values
 df <- SIH2010 %>% 
   distinct(CEP,MUNIC_RES,NASC,SEXO,RACA_COR,DT_INTER,DIAG_PRINC,CGC_HOSP,

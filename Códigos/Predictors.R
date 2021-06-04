@@ -182,19 +182,57 @@ setwd(wd4)
 getwd()
 write.csv2(df, file ="./CityICSAP8.csv")
 
+# read file
+wd4 <- "C:/Users/Dell/OneDrive/R/ICSAP/Arquivos exportados"
+setwd(wd4)
+getwd()
+df <- read.csv2("./CityICSAP8.csv")
+
+# read and prepare file
+equip <- read.csv2("./equip_icsap.csv")
+names(equip)[2] <- "COD6D"
+names(equip)[3] <- "EquipMean"
+names(equip)[4] <- "EquipMedian"
+
+# merge data sets
+df <- merge(x = df, y = equip[,c(2:4)], by = "COD6D", all.x = TRUE)
+df$EquipMean <- ifelse(is.na(df$EquipMean), 0, df$EquipMean)
+df$EquipMedian <- ifelse(is.na(df$EquipMedian), 0, df$EquipMedian)
+
+# prepare data sets
+df$EquipMeanPop <- df$EquipMean / (df$POPULACAO / 1000)
+df$EquipMedianPop <- df$EquipMedian / (df$POPULACAO / 1000)
+
 # multiple linear regression
-fit <- lm(data = df, ICSAPprop ~ URBANAPerc + MULHERPerc + IDHM.RENDA + 
+fit <- lm(data = df, ICSAPpropNorm$x.t ~ URBANAPerc + MULHERPercNorm$x.t + IDHM.RENDA + 
             IDHM.SCHOOL + IDHM.LONGEVIDADE + ESFmedian + log(POPULACAO) + 
             RedeGeralAbast + RedeGeralEsgot + BRANCAPerc + PRETAPerc + 
             AMARELAPerc + PARDAPerc + INDIGENAPerc + COR_SDPerc + 
-            log(QT_SUS_HAB + 1) + YoungOld1 + LessDistant2)
+            log(QT_SUS_HAB + 1) + YoungOld1 + LessDistant2 + EquipMedianPropNorm$x.t)
 summary(fit)
 windows()
 par(mfrow=c(2,2))
 plot(fit)
 par(mfrow=c(1,1))
 hist(fit$residuals)
+library(ggplot2)
+qplot(ICSAPpropNorm$x.t, fit$fitted.values)
 
+# transformations
+library(bestNormalize)
+ICSAPpropNorm <- bestNormalize(df$ICSAPprop)
+MULHERPercNorm <- bestNormalize(df$MULHERPerc)
+EquipMedianPropNorm <- bestNormalize(df$EquipMedianPop)
 
+bestNormalize(df)
 
+hist(df$LessDistant2)
 
+# multiple poisson regression
+pois <- glm(data = df, ICSAPprop ~ URBANAPerc + MULHERPerc + IDHM.RENDA + 
+            IDHM.SCHOOL + IDHM.LONGEVIDADE + ESFmedian + log(POPULACAO) + 
+            RedeGeralAbast + RedeGeralEsgot + BRANCAPerc + PRETAPerc + 
+            AMARELAPerc + PARDAPerc + INDIGENAPerc + COR_SDPerc + 
+            log(QT_SUS_HAB + 1) + YoungOld1 + LessDistant2 + EquipMedianPop,
+            family = "poisson")
+summary(pois)
