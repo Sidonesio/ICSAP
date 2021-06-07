@@ -38,5 +38,19 @@ cnes_pf_medicos_generalistas <- cnes_pf_ajustado_mediana %>% filter(CBO %in% med
   group_by(CODUFMUN) %>% summarise(qtde=sum(mediana))
 
 
-write.csv2(cnes_pf_medicos_generalistas, "medicos_generalistas.csv")
+write.csv2(cnes_pf_medicos_generalistas, "medicos.csv")
+
+#extrair profissionais da enfermagem: enferimeiros, técnicos de enfermagem e auxiliares de enfermagem
+
+prof_enfermagem <- str_subset(cod_cbo$DS_REGRA, pattern = regex("enferm", ignore_case = T))
+prof_enfermagem <- prof_enfermagem[c(1:16, 21:30)]
+prof_enfermagem <- cod_cbo %>% filter(DS_REGRA %in% prof_enfermagem) %>%
+  distinct(CHAVE)
+prof_enfermagem <- as.character(prof_enfermagem$CHAVE)
+
+cnes_pf_prof_enfermagem <- cnes_pf_ajustado_mediana %>% filter(CBO %in% prof_enfermagem) %>%
+  group_by(CODUFMUN) %>% summarise(qtde=sum(mediana))
+
+
+write.csv2(cnes_pf_prof_enfermagem, "prof_enfermagem.csv")
 
