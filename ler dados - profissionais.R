@@ -20,7 +20,7 @@ for (i in 2:324) {
   print(paste(i, " - ", arquivos[i]))
   
 }
-
+ 
 cnes_pf_ajustado_mediana <- cnes_pf %>% group_by(CODUFMUN, CBO) %>%
   summarise(mediana = median(qtde))
 
@@ -38,7 +38,5 @@ cnes_pf_medicos_generalistas <- cnes_pf_ajustado_mediana %>% filter(CBO %in% med
   group_by(CODUFMUN) %>% summarise(qtde=sum(mediana))
 
 
-write.csv2(cnes_pf_medicos_generalistas, "medicos_.csv")
+write.csv2(cnes_pf_medicos_generalistas, "medicos_generalistas.csv")
 
-
-git revert HEAD~1
