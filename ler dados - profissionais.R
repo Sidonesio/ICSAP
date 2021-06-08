@@ -56,3 +56,9 @@ write.csv2(cnes_pf_prof_enfermagem, "prof_enfermagem.csv")
 
 # Lista de todos os profissionais
 
+profissionais <- cnes_pf %>% distinct(CBO) %>% select(CBO)
+profissionais$CODUFMUN = NULL
+profissionais = unique(profissionais$CBO)
+profissionais <- as.data.frame(profissionais)
+profissionais <- left_join(profissionais, cod_cbo, by = c("profissionais" = "CHAVE"))
+write.csv2(profissionais, "todos_profissionais.csv")
