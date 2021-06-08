@@ -54,3 +54,5 @@ cnes_pf_prof_enfermagem <- cnes_pf_ajustado_mediana %>% filter(CBO %in% prof_enf
 
 write.csv2(cnes_pf_prof_enfermagem, "prof_enfermagem.csv")
 
+# Lista de todos os profissionais
+
