@@ -62,3 +62,34 @@ profissionais = unique(profissionais$CBO)
 profissionais <- as.data.frame(profissionais)
 profissionais <- left_join(profissionais, cod_cbo, by = c("profissionais" = "CHAVE"))
 write.csv2(profissionais, "todos_profissionais.csv")
+
+
+########## Agrupamento proposto por Sidney
+
+medicos_todos <- str_subset(cod_cbo$DS_REGRA, pattern = regex("médic", ignore_case = T))
+medicos_todos <- medicos_todos[c(1:64, 69:135, 140)]
+
+medicos_g1 <- cod_cbo %>% filter(DS_REGRA %in% medicos_todos) %>% distinct(CHAVE) # 1) quantidade total de médicos
+medicos_g1 <- medicos_g1$CHAVE
+medicos_g1 <- cnes_pf_ajustado_mediana %>% filter(CBO %in% medicos_g1) %>%
+  group_by(CODUFMUN) %>% summarise(qtde=sum(mediana))
+
+### Segundo grupo: 2) quantidade de médicos cuja formação é mais voltada para a atenção primária 
+### (eu colocaria os seguintes apenas: médico em medicina preventiva e social; médico sanitarista; 
+### médico em medicina de família e comunidade; médico generalista; médico de saúde da família; 
+### nem colocaria o médico clínico, porque praticamente todo médico é clínico, eu acho que poluiria 
+### um pouco a variável inserir o médico clínico);
+
+medicos_g2 <- c("2231F8", "223156", "223116", "2231F7", "223129")
+medicos_g2 <- cnes_pf_ajustado_mediana %>% filter(CBO %in% medicos_g2) %>%
+  group_by(CODUFMUN) %>% summarise(qtde=sum(mediana))
+
+cidades <- as.data.frame(unique(popCities$COD6D))
+names(cidades)[1] = "CODUFMUN"
+cidades$CODUFMUN = as.character(cidades$CODUFMUN)
+
+medicos_g3 <- left_join(cidades, medicos_g1, by = "CODUFMUN")
+names(medicos_g3)[2] = "medicos_g1"
+medicos_g3 <- left_join(medicos_g3, medicos_g2, by = "CODUFMUN")
+names(medicos_g3)[3] = "medicos_g2"
+medicos_g3$medicos_g3 <- medicos_g3$medicos_g1/medicos_g3$medicos_g2
