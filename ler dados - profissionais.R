@@ -93,3 +93,4 @@ names(medicos_g3)[2] = "medicos_g1"
 medicos_g3 <- left_join(medicos_g3, medicos_g2, by = "CODUFMUN")
 names(medicos_g3)[3] = "medicos_g2"
 medicos_g3$medicos_g3 <- medicos_g3$medicos_g1/medicos_g3$medicos_g2
+write.csv2(medicos_g3, "médicos_sidney.csv")
