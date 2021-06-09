@@ -92,5 +92,9 @@ medicos_g3 <- left_join(cidades, medicos_g1, by = "CODUFMUN")
 names(medicos_g3)[2] = "medicos_g1"
 medicos_g3 <- left_join(medicos_g3, medicos_g2, by = "CODUFMUN")
 names(medicos_g3)[3] = "medicos_g2"
-medicos_g3$medicos_g3 <- medicos_g3$medicos_g1/medicos_g3$medicos_g2
+
+medicos_g3$medicos_g2 <- if_else(is.na(medicos_g3$medicos_g2), 0, medicos_g3$medicos_g2)
+medicos_g3$medicos_g1 <- if_else(is.na(medicos_g3$medicos_g1), 0.00000000001, medicos_g3$medicos_g1)
+
+medicos_g3$medicos_g3 <- medicos_g3$medicos_g2/medicos_g3$medicos_g1
 write.csv2(medicos_g3, "médicos_sidney.csv")
