@@ -3,6 +3,9 @@ d6 <- read.csv("./orcamento/2006.csv")
 d7 <- read.csv2("./orcamento/2007.csv")
 d8 <- read.csv("./orcamento/2008.csv")
 d9 <- read.csv("./orcamento/2009.csv")
+
+
+# informações anuais ####
  
 d5$ano <- 2005
 d6$ano <- 2006
@@ -23,6 +26,9 @@ names(d9) <- c("cod_mun", "municipio", "funcao", "subfuncao", "despesa", "ano")
 
 despesas_saude <- rbind(d5, d6, d7, d8, d9)
 despesas_saude$despesa <- as.numeric(despesas_saude$despesa)
+
+
+# kjhagf kjasd####
 
 library(tidyverse)
 despesas_saude <- despesas_saude %>% group_by(cod_mun, municipio, subfuncao) %>%
